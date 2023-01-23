@@ -6,7 +6,7 @@ npm install
 
 ## Create database
 ```
-script_create.sql & script_insert.sql dans le dossier ./scripts
+script_create_V1.0.sql & script_insert_V1.0.sql dans le dossier ./scripts
 ```
 
 ## Compiles and launch server
