@@ -3,19 +3,19 @@
 URL de la documentation swagger : http://localhost:3000/api/v1/api-docs/
 ```
 
-Initialiser le dossier "client"
+Initialiser le dossier ./client
 ```
-Explication dans le README.md du dossier ./client
+npm i puis npm run serve
 ```
 
-Initialiser le dossier "server"
+Initialiser le dossier ./server
 ```
-Explication dans le README.md du dossier ./server
+npm i puis npm run start
 ```
 
 Initialiser la base de données
 ```
-Dans PostgreSQL, utiliser commande "\i <path>" vers le fichier script_create_V1.0.sql et script_insert_V1.0.sql dans le dossier /implementation
+Dans une base de données PostgreSQL, utiliser commande "\i <path>" vers le fichier script_create_V1.0.sql et script_insert_V1.0.sql dans le dossier ./implementation/scripts
 ```
 
 Le projet a été crée pour représenter un évènement : un salon de l'automobile
