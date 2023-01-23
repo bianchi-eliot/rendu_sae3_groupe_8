@@ -1,5 +1,5 @@
-const pool = require("../../db.js")
-const organiserQueries = require("./organiser.queries")
+const pool = require('../../db_V1.0.js')
+const organiserQueries = require('./organiser.queries_V1.0.js')
 
 function validerUnPrestataire(req,res){
     try {
@@ -44,7 +44,7 @@ function listerLesPrestataires(req, res) {
     pool.query(organiserQueries.getPersons, (error, results)=>{
         if (error) throw error
         if(results.rows == 0){
-            res.send("Il n'y a aucun prestataire inscrit")
+            res.send('Il n\'y a aucun prestataire inscrit')
         }
         res.send(results.rows)
     })

@@ -9,9 +9,9 @@
 </template>
 
 <script>
-import LogIn from '../components/log_sign/LogIn.vue'
-import SignIn from '../components/log_sign/SignIn.vue'
-import FlashMessage from '@/components/FlashMessage.vue'
+import LogIn from '../components/log_sign/LogIn_V1.0.vue'
+import SignIn from '../components/log_sign/SignIn_V1.0.vue'
+import FlashMessage from '@/components/FlashMessage_V1.0.vue'
 
 export default {
     name: 'LogSignView',

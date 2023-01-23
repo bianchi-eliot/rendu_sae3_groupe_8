@@ -1,4 +1,4 @@
-const rootControllers = require('./root.controllers.js')
+const rootControllers = require('./root.controllers_V1.0.js')
 const express = require('express')
 const router = express.Router()
 

@@ -22,7 +22,7 @@
 </template>
 
 <script>
-import Table from '../components/planning/Table.vue'
+import Table from '../components/planning/Table_V1.0.vue'
 
 export default {
     name: 'PlanningView',

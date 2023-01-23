@@ -1,5 +1,5 @@
-const organiserControllers = require("./organiser.controllers")
-const express = require("express")
+const organiserControllers = require('./organiser.controllers_V1.0.js')
+const express = require('express')
 const router = express.Router()
 /**
  * @swagger
@@ -33,7 +33,7 @@ router.get('/allContractors', organiserControllers.listerLesPrestataires)
  *          '400':
  *              description: Bad request
  */
-router.get("/listContractorsOnWL", organiserControllers.listerLesPrestatairesEnAttente)
+router.get('/listContractorsOnWL', organiserControllers.listerLesPrestatairesEnAttente)
 
 /**
  * @swagger
@@ -55,8 +55,8 @@ router.get("/listContractorsOnWL", organiserControllers.listerLesPrestatairesEnA
  *          '400':
  *              description: Bad request
  */
-router.get("/validateContractorOnWL/:id", organiserControllers.validerUnPrestataire)
+router.get('/validateContractorOnWL/:id', organiserControllers.validerUnPrestataire)
 
-router.delete("/deleteContractorOnWL/:id", organiserControllers.refuserUnePersonneEnAttente)
+router.delete('/deleteContractorOnWL/:id', organiserControllers.refuserUnePersonneEnAttente)
 
 module.exports = router

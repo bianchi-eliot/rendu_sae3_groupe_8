@@ -1,7 +1,7 @@
-const { simplifyRequest } = require('../../tools/sql.tools.js')
+const { simplifyRequest } = require('../../tools/sql.tools_V1.0.js')
  
-const rootQueries = require('./root.queries.js')
-const pool = require('../../db.js')
+const rootQueries = require('./root.queries_V1.0.js')
+const pool = require('../../db_V1.0.js')
 
 async function getHome(req, res) {
     const brands = await pool.query(rootQueries.selectAllSocietes)

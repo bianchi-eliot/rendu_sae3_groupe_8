@@ -1,9 +1,9 @@
-const { simplifyRequest } = require('../../tools/sql.tools.js')
+const { simplifyRequest } = require('../../tools/sql.tools_V1.0.js')
 //const mapData = require('../../map_datas.json')
-const mapQueries = require('./map.queries.js')
+const mapQueries = require('./map.queries_V1.0.js')
 
 //const persons = require("../../json/persons.json")
-const pool = require('../../db.js')
+const pool = require('../../db_V1.0.js')
 
 
 /*function listByBrand(req,res,next){

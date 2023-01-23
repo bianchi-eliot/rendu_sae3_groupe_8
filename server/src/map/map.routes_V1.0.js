@@ -1,7 +1,7 @@
 
 const express = require('express')
 const router = express.Router()
-const mapControllers = require("./map.controllers")
+const mapControllers = require("./map.controllers_V1.0.js")
 
 /**
  * @swagger

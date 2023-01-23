@@ -33,7 +33,7 @@
 </template>
 
 <script>
-import StandInformations from '../components/map/StandInformations.vue'
+import StandInformations from '../components/map/StandInformations_V1.0.vue'
 
 export default {
     name: 'MapView',

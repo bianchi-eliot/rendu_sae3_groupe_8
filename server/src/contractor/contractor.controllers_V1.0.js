@@ -1,8 +1,8 @@
-const contractorServices = require('./contractor.services.js')
+const contractorServices = require('./contractor.services_V1.0.js')
 
-const pool = require("../../db.js")
-const contractorQueries = require("./contractor.queries.js")
-const servicesQueries = require('../services/services.queries.js')
+const pool = require("../../db_V1.0.js")
+const contractorQueries = require("./contractor.queries_V1.0.js")
+const servicesQueries = require('../services/services.queries_V1.0.js')
 
 async function logIn(req,res) {
     try {

@@ -5,7 +5,7 @@
           <label for="type">Type de pièce :</label>
           <select id="type" name="type" v-model="type_piece_filt">
             <option :value="-1">Choose</option>
-            <option v-for="type in types_pieces" :value="type.nom_type_piece">{{ type.nom_type_piece }}</option> <!-- v-for -->
+            <option v-for="type in types_pieces" :key="type.nom_type_piece" :value="type.nom_type_piece">{{ type.nom_type_piece }}</option> <!-- v-for -->
           </select>
         </div>
 
@@ -14,7 +14,7 @@
           <label for="marque">Marque vendeuse :</label>
           <select id="marque" name="marque" v-model="societe_filt">
             <option :value="-1">Choose</option>
-            <option v-for="s in societes" :value="s.nom_societe">{{s.nom_societe}}</option>
+            <option v-for="s in societes" :key="s.nom_societe" :value="s.nom_societe">{{s.nom_societe}}</option>
           </select>
         </div>
 

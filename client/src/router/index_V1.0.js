@@ -1,19 +1,18 @@
 import { createRouter, createWebHashHistory } from 'vue-router'
-import HomeView from '../views/Home.vue'
-import ShopView from '../views/shop/Shop.vue'
-import MapView from '../views/Map.vue'
-import PlanningView from '../views/Planning.vue'
-import LogSignView from '../views/LogSign.vue'
-import AccountView from '../views/Account.vue'
-import PieceDetails from "@/views/shop/pieces/PieceDetails.vue"
+import HomeView from '../views/Home_V1.0.vue'
+import ShopView from '../views/shop/Shop_V1.0.vue'
+import MapView from '../views/Map_V1.0.vue'
+import PlanningView from '../views/Planning_V1.0.vue'
+import LogSignView from '../views/LogSign_V1.0.vue'
+import AccountView from '../views/Account_V1.0.vue'
 
-import GuestBookView from '../views/Account/GuestBook.vue'
-import GraphView from '../views/Account/Graph.vue'
+import GuestBookView from '../views/Account/GuestBook_V1.0.vue'
+import GraphView from '../views/Account/Graph_V1.0.vue'
 
-import VisitContractorView from '../views/VisitContractor.vue'
-import AddTimeSlotView from '../views/AddTimeSlot.vue'
+import VisitContractorView from '../views/VisitContractor_V1.0.vue'
+import AddTimeSlotView from '../views/AddTimeSlot_V1.0.vue'
 
-import PendingContractors from '../views/PendingContractors.vue'
+import PendingContractors from '../views/PendingContractors_V1.0.vue'
 
 const routes = [
     {
@@ -25,11 +24,6 @@ const routes = [
         path: '/shop',
         name: 'shop',
         component: ShopView
-    },
-    {
-        path: '/shop/piece/:id',
-        name: 'details_piece',
-        component: PieceDetails
     },
     {
         path: '/map',

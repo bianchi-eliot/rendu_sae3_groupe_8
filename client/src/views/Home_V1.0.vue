@@ -11,11 +11,11 @@
 </template>
 
 <script>
-import Recap from '../components/home/Recap.vue'
-import Societes from '../components/home/Societes.vue'
-import Activities from '../components/home/Activities.vue'
-import Services from '../components/home/Services.vue'
-import FlashMessage from '@/components/FlashMessage.vue'
+import Recap from '../components/home/Recap_V1.0.vue'
+import Societes from '../components/home/Societes_V1.0.vue'
+import Activities from '../components/home/Activities_V1.0.vue'
+import Services from '../components/home/Services_V1.0.vue'
+import FlashMessage from '@/components/FlashMessage_V1.0.vue'
 
 
 export default {

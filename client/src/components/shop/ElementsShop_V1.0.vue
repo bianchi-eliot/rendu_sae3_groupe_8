@@ -1,6 +1,6 @@
 <template>
   <div v-if="allPieces">
-    <div class="card" v-for="piece in allPieces">
+    <div class="card" v-for="piece in allPieces" :key="piece.id_piece">
       <div class="card-content">
         <router-link :to="{name: 'details_piece', params: {id: piece.id_piece}}">
           <img alt="img_piece" src="@/assets/jpg/pieces/amc_908833k.png" style="height: 200px; width: 200px; object-fit: cover; object-position: 50% 0;">

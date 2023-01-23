@@ -1,5 +1,5 @@
 <template>
-    <div class="flash-message" :class="class">
+    <div class="flash-message primary">
         {{ message }}
     </div>
 </template>
@@ -7,11 +7,14 @@
 <script>
 export default {
     name: 'FlashMessageComponent',
+    data() {
+        return {}
+    },
     props: { message: String, class: String }
 }
 </script>
 
-<style>
+<style scoped>
 .flash-message {
     position: absolute;
         top: 10vh;

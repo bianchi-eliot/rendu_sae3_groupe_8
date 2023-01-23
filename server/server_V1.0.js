@@ -1,12 +1,12 @@
-const rootRoutes = require('./src/root/root.routes.js')
-const mapRoutes = require('./src/map/map.routes.js')
-const contractorRoutes = require('./src/contractor/contractor.routes.js')
-const shopRoutes = require('./src/shop/shop.routes.js')
-const organiserRoutes = require('./src/organiser/organiser.routes.js')
-// const brandRoutes = require('./src/brand/brand.routes.js')
-const servicesRoutes = require('./src/services/services.routes.js')
+const rootRoutes = require('./src/root/root.routes_V1.0.js')
+const mapRoutes = require('./src/map/map.routes_V1.0.js')
+const contractorRoutes = require('./src/contractor/contractor.routes_V1.0.js')
+const shopRoutes = require('./src/shop/shop.routes_V1.0.js')
+const organiserRoutes = require('./src/organiser/organiser.routes_V1.0.js')
+// const brandRoutes = require('./src/brand/brand.routes_V1.0.js')
+const servicesRoutes = require('./src/services/services.routes_V1.0.js')
 
-// const visitorsRoutes = require('./src/visitors/visitors.routes.js')
+// const visitorsRoutes = require('./src/visitors/visitors.routes_V1.0.js')
 
 require('dotenv').config()
 const PORT = process.env.PORT || 3000

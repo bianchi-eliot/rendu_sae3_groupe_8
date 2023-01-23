@@ -1,6 +1,6 @@
 require("dotenv").config();
-const shopQueries = require("./shop.queries")
-const pool = require('../../db')
+const shopQueries = require("./shop.queries_V1.0.js")
+const pool = require('../../db_V1.0.js')
 
 exports.list = (req,res) => {
     pool.query(shopQueries.getAllPieces, (error, results) => {

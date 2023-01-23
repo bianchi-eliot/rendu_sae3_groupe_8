@@ -1,5 +1,5 @@
-const pool = require("../../db.js")
-const serviceQueries = require("./services.queries")
+const pool = require("../../db_V1.0.js")
+const serviceQueries = require("./services.queries_V1.0.js")
 
 async function addGuestBook(req, res) {
     try {

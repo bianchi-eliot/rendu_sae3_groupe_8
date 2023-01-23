@@ -86,7 +86,7 @@
         <ul v-if="$store.state.userRole === 'organiser'" class="navbar-list">
             <li class="navbar-list-element">
                 <router-link :to="{ name: 'pending-contractors' }"> 
-                    <img :src="require(`../assets/clock.png`)">
+                    <img :src="require(`../assets/jpg/clock.png`)">
                     <span class="navbar-title">Pending</span> 
                 </router-link>
             </li>

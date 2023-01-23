@@ -12,13 +12,13 @@
             <textarea name="info" v-model="contractor.infopersonne"></textarea>
 
             <select name="societes" v-model="contractor.id_societe">
-                <option v-for="societe in societes" :value="societe.id_societe">
+                <option v-for="societe in societes" :key="societe.id_societe" :value="societe.id_societe">
                     {{ societe.nom_societe }}
                 </option>
             </select>
 
             <select name="activities" v-model="contractor.id_activite">
-                <option v-for="activity in activities" :value="activity.id_activite">
+                <option v-for="activity in activities" :key="activity.id_activite" :value="activity.id_activite">
                     {{ activity.nom_activite }}
                 </option>
             </select>

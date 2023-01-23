@@ -1,4 +1,4 @@
-const shopControllers = require("./shop.controllers.js");
+const shopControllers = require("./shop.controllers_V1.0.js");
 const express = require('express');
 const router = express.Router();
 

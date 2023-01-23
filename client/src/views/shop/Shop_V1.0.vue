@@ -10,8 +10,8 @@
 </template>
 
 <script>
-import FilterShop from "@/components/shop/FilterShop";
-import ElementsShop from "@/components/shop/ElementsShop";
+import FilterShop from "@/components/shop/FilterShop_V1.0.vue";
+import ElementsShop from "@/components/shop/ElementsShop_V1.0.vue";
 
 export default {
   name: 'ShopView',
@@ -35,5 +35,5 @@ export default {
 </script>
 
 <style scoped>
-  @import '@/assets/shop.css';
+  @import '@/assets/shop_V1.0.css';
 </style>
