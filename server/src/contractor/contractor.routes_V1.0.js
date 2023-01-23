@@ -1,5 +1,4 @@
 const contractorControllers = require('./contractor.controllers_V1.0.js')
-require('dotenv').config()
 const express = require('express')
 const router = express.Router()
 

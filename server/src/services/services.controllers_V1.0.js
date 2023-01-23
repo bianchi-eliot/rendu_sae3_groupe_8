@@ -1,5 +1,6 @@
-const pool = require("../../db_V1.0.js")
-const serviceQueries = require("./services.queries_V1.0.js")
+const serviceQueries = require('./services.queries_V1.0.js')
+const pool = require('../../db_V1.0.js')
+
 
 async function addGuestBook(req, res) {
     try {
@@ -11,7 +12,7 @@ async function addGuestBook(req, res) {
 
         const { idContractor, idVisitor, message } = req.body
 
-        const verif = await pool.query(`SELECT id_visiteur FROM livre_dor WHERE id_visiteur = $1 AND id_prestataire = $2;`
+        const verif = await pool.query(`SELECT id_visiteur FROM livre_dor WHERE id_visiteur = $1 AND id_prestataire = $2`
         , [idVisitor, idContractor])
 
         if (verif.rows.length === 0) {
@@ -47,7 +48,7 @@ async function addStars(req, res) {
     try {
         const { idContractor, idVisitor, stars } = req.body
 
-        const verif = await pool.query(`SELECT id_visiteur FROM stars WHERE id_visiteur = $1 AND id_prestataire = $2;`, [idVisitor, idContractor])
+        const verif = await pool.query(`SELECT id_visiteur FROM stars WHERE id_visiteur = $1 AND id_prestataire = $2`, [idVisitor, idContractor])
 
         if (verif.rows.length === 0) {
             const tab = [idContractor, idVisitor, stars]
@@ -89,7 +90,7 @@ async function getAllServices(req, res) {
 async function addGraph(req, res) {
     try {
         const { tranche_horaire, id_personne } = req.body
-        const verif = await pool.query('SELECT id_personne FROM affluence_sur_page WHERE tranche_horaire = $1 AND id_personne = $2;',
+        const verif = await pool.query('SELECT id_personne FROM affluence_sur_page WHERE tranche_horaire = $1 AND id_personne = $2',
         [tranche_horaire, id_personne])
         if (verif.rows.length === 0) {
             await pool.query(serviceQueries.insertGraph, [tranche_horaire, id_personne])

@@ -1,10 +1,10 @@
-const getPiece = "SELECT * FROM pieces WHERE id_piece = $1";
-const getPanierFromId = "SELECT * FROM rempli_panier WHERE id_personne = $1"
+const getPiece = 'SELECT * FROM pieces WHERE id_piece = $1'
+const getPanierFromId = 'SELECT * FROM rempli_panier WHERE id_personne = $1'
 
-const getAllPieces = "SELECT * FROM pieces"
+const getAllPieces = 'SELECT * FROM pieces'
 
-const getAllTypes = "SELECT * FROM type_pieces"
-const getAllSocietes = "SELECT * FROM societes"
+const getAllTypes = 'SELECT * FROM type_pieces'
+const getAllSocietes = 'SELECT * FROM societes'
 
 const filter = `SELECT * FROM pieces
                 WHERE id_type_piece = (SELECT id_type_piece FROM type_pieces WHERE nom_type_piece = $1)

@@ -1,6 +1,6 @@
+const servicesControllers = require('./services.controllers_V1.0.js')
 const express = require('express')
 const router = express.Router()
-const servicesControllers = require('./services.controllers_V1.0.js')
 
 router.post('/guest-book', servicesControllers.addGuestBook)
 

@@ -1,8 +1,7 @@
-const contractorServices = require('./contractor.services_V1.0.js')
-
-const pool = require("../../db_V1.0.js")
-const contractorQueries = require("./contractor.queries_V1.0.js")
+const contractorQueries = require('./contractor.queries_V1.0.js')
 const servicesQueries = require('../services/services.queries_V1.0.js')
+const pool = require('../../db_V1.0.js')
+
 
 async function logIn(req,res) {
     try {
@@ -69,14 +68,12 @@ async function getAllContractor(req, res) {
     }
 } 
 
-
-
 async function enableService(req, res) {
     try {
         const idContractor = req.body.idContractor
         const idService = req.params.id
         await pool.query(contractorQueries.enableAService, [idContractor, idService])
-        res.send({ data: 0, message: "vous avez activé le service"})
+        res.send({ data: 0, message: 'vous avez activé le service'})
     } catch(err) {
         console.log(err.message)
         res.send({ data: 1, message: 'le service a deja ete active' })
@@ -88,7 +85,7 @@ async function disableService(req, res) {
         const idContractor = req.body.idContractor
         const idService = req.params.id
         await pool.query(contractorQueries.disableAService, [idContractor, idService])
-        res.send({ data: 0, message: "vous avez désactivé le service" })
+        res.send({ data: 0, message: 'vous avez désactivé le service' })
     } catch(err) {
         console.log(err.message)
         res.send({ data: 1 })
@@ -128,7 +125,7 @@ async function affluenceParPersonne(req,res){
     try {
         const idContractor = req.params.id
         const results = await pool.query(contractorQueries.showaffluenceParPersonne, [idContractor])
-        if(results.rows == 0){res.send({data: "vous n'avez pas encore eu de visites"})}
+        if(results.rows == 0){res.send({data: 'vous n\'avez pas encore eu de visites'})}
         res.send({ data: results.rows })
     } catch(err){
         console.log(err.message)

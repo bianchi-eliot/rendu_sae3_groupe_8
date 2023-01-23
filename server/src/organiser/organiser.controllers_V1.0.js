@@ -1,5 +1,5 @@
-const pool = require('../../db_V1.0.js')
 const organiserQueries = require('./organiser.queries_V1.0.js')
+const pool = require('../../db_V1.0.js')
 
 function validerUnPrestataire(req,res){
     try {

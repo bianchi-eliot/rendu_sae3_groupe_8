@@ -12,7 +12,7 @@ SELECT EXTRACT (HOUR FROM creneau) AS hour, personnes.id_personne, societes.id_s
         ON creneaux.id_stand = stands.id_stand
 
     WHERE EXTRACT (DAY FROM creneau) = $1 AND EXTRACT(MONTH FROM creneau) = $2 
-        AND EXTRACT (HOUR FROM creneau) >= $3 AND EXTRACT (HOUR FROM creneau) < $4;`
+        AND EXTRACT (HOUR FROM creneau) >= $3 AND EXTRACT (HOUR FROM creneau) < $4`
 
 /*
 INNER JOIN active

@@ -10,19 +10,19 @@ const planning = `
         ON personnes.id_activite = activites.id_activite
     INNER JOIN stands
         ON creneaux.id_stand = stands.id_stand
-    WHERE EXTRACT (DAY FROM creneau) = $1 AND EXTRACT(MONTH FROM creneau) = $2;`
+    WHERE EXTRACT (DAY FROM creneau) = $1 AND EXTRACT(MONTH FROM creneau) = $2`
 
-const selectAllSocietes = `SELECT id_societe, nom_societe, photo_marque FROM societes;`
-const selectAllActivities = `SELECT id_activite, nom_activite FROM activites;`
-const selectAllRoles = `SELECT id_role, libelle_role FROM roles;`
+const selectAllSocietes = `SELECT id_societe, nom_societe, photo_marque FROM societes`
+const selectAllActivities = `SELECT id_activite, nom_activite FROM activites`
+const selectAllRoles = `SELECT id_role, libelle_role FROM roles`
 
 const selectFormSignInRoles = `
     SELECT id_role, libelle_role 
     FROM roles
-    WHERE libelle_role <> 'organisateur' AND libelle_role <> 'prestataire_en_attente';`
+    WHERE libelle_role <> 'organisateur' AND libelle_role <> 'prestataire_en_attente'`
 
 const selectAllStands = `
-    SELECT * FROM stands;
+    SELECT * FROM stands
 `
 
 module.exports = {

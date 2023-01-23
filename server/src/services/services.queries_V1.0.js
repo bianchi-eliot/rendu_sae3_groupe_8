@@ -1,10 +1,10 @@
 const insertGuestBook = `
     INSERT INTO livre_dor (id_prestataire, id_visiteur, date_signature, message_visiteur) 
-    VALUES ($1, $2, $3, $4);
+    VALUES ($1, $2, $3, $4)
 `
 
 const updateGuestBook = `
-    UPDATE livre_dor SET message_visiteur = $1, date_signature = $2 WHERE id_prestataire = $3 AND id_visiteur = $4;
+    UPDATE livre_dor SET message_visiteur = $1, date_signature = $2 WHERE id_prestataire = $3 AND id_visiteur = $4
 `
 
 const selectGuestBookByContractorId = `
@@ -12,31 +12,31 @@ const selectGuestBookByContractorId = `
     FROM livre_dor
     INNER JOIN personnes 
     ON livre_dor.id_visiteur = personnes.id_personne
-    WHERE livre_dor.id_prestataire = $1;
+    WHERE livre_dor.id_prestataire = $1
 `
 
 
 const insertStars = `
     INSERT INTO stars (id_prestataire, id_visiteur, valeur_note) 
-    VALUES ($1, $2, $3);
+    VALUES ($1, $2, $3)
 `
 const updateStars = `
-    UPDATE stars SET valeur_note = $1 WHERE id_prestataire = $2 AND id_visiteur = $3;
+    UPDATE stars SET valeur_note = $1 WHERE id_prestataire = $2 AND id_visiteur = $3
 `
 
 const selectStartsByContractorId = `
     SELECT AVG(valeur_note) AS grade
     FROM stars
-    WHERE id_prestataire = $1;
+    WHERE id_prestataire = $1
 `
 
 
-const selectAllServices = `SELECT id_service, libelle_service FROM services;` 
+const selectAllServices = `SELECT id_service, libelle_service FROM services` 
 
 
 const insertGraph = `
     INSERT into affluence_sur_page(tranche_horaire, compteur, id_personne)
-    VALUES ($1, 1, $2); 
+    VALUES ($1, 1, $2) 
 `
 
 const updateGraph = `

@@ -5,8 +5,6 @@ const shopRoutes = require('./src/shop/shop.routes_V1.0.js')
 const organiserRoutes = require('./src/organiser/organiser.routes_V1.0.js')
 const servicesRoutes = require('./src/services/services.routes_V1.0.js')
 
-// const visitorsRoutes = require('./src/visitors/visitors.routes_V1.0.js')
-
 require('dotenv').config()
 const PORT = process.env.PORT || 3000
 const express = require('express')
@@ -33,7 +31,7 @@ const swaggerOption = {
         '../swagger_routes/services_routes_doc_V1.0.js',
     ]
 }
-const swaggerDocs = swaggerJsDoc(swaggerOption);
+const swaggerDocs = swaggerJsDoc(swaggerOption)
 
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
@@ -50,8 +48,6 @@ app.use('/map', mapRoutes)
 app.use('/contractors', contractorRoutes)
 app.use('/shop', shopRoutes)
 app.use('/organiser', organiserRoutes)
-// app.use('/brands', brandRoutes)
 app.use('/services', servicesRoutes)
-// app.use('/visitors', visitorsRoutes)
 
 app.listen(PORT, console.log(`Listen on localhost:${PORT}`))
