@@ -3,7 +3,6 @@ const mapRoutes = require('./src/map/map.routes_V1.0.js')
 const contractorRoutes = require('./src/contractor/contractor.routes_V1.0.js')
 const shopRoutes = require('./src/shop/shop.routes_V1.0.js')
 const organiserRoutes = require('./src/organiser/organiser.routes_V1.0.js')
-// const brandRoutes = require('./src/brand/brand.routes_V1.0.js')
 const servicesRoutes = require('./src/services/services.routes_V1.0.js')
 
 // const visitorsRoutes = require('./src/visitors/visitors.routes_V1.0.js')
@@ -27,15 +26,12 @@ const swaggerOption = {
         },
     }),
     apis: [
-            'server.js', 
-            './src/brand/brand.routes.js', 
-            './src/contractor/contractor.routes.js',
-            './src/map/map.routes.js',
-            './src/services/services.routes.js',
-            './src/organiser/organiser.routes.js',
-            './src/root/root.routes.js',
-            './src/shop/shop.routes.js'
-        ]
+        'server.js', 
+        '../swagger_routes/prestataires_routes_doc_V1.0.js',
+        '../swagger_routes/map_routes_doc_V1.0.js',
+        '../swagger_routes/organisateurs_routes_doc_V1.0.js',
+        '../swagger_routes/services_routes_doc_V1.0.js',
+    ]
 }
 const swaggerDocs = swaggerJsDoc(swaggerOption);
 
