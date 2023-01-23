@@ -4,7 +4,7 @@
   "description": "",
   "main": "server_V1.0.js",
   "scripts": {
-    "start": "nodemon server_V1.0.js"
+    "start": "node server_V1.0.js"
   },
   "keywords": [],
   "author": "",

@@ -34,7 +34,6 @@ async function addGuestBook(req, res) {
 async function getGuestBook(req, res) {
     try {
         const idContractor = req.params.id
-        console.log(idContractor)
         const guestBook = await pool.query(serviceQueries.selectGuestBookByContractorId, [idContractor])
         res.send({ data: 0, guestBook: guestBook.rows })
     } catch(err) {

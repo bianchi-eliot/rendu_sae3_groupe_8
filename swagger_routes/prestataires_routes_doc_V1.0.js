@@ -2,7 +2,7 @@
  * @swagger
  * /contractors/log-in:
  *   post:
- *      description: Afficher tous les prestataires
+ *      description: Permet de se connecter à un compte existant
  *      tags:
  *          - prestataire
  *      parameters:
@@ -39,7 +39,7 @@
  * @swagger
  * /contractors/sign-in:
  *   post:
- *      description: Afficher tous les prestataires
+ *      description: Permet de se créer un compte
  *      tags:
  *          - prestataire
  *      parameters:
@@ -123,13 +123,13 @@
  * @swagger
  * /contractors/{id}:
  *   get:
- *      description: Afficher tous les prestataires
+ *      description: Afficher un prestataire avec un id précis
  *      tags:
  *          - prestataire
  *      parameters:
  *          - in: path
  *            name: id
- *            required: true
+ *            default: 3
  *            type: integer
  *      responses:
  *          '200':
@@ -145,13 +145,13 @@
  * @swagger
  * /contractors/{id}:
  *   put:
- *      description: Afficher tous les prestataires
+ *      description: Met à jour un prestataire avec un id précis
  *      tags:
  *          - prestataire
  *      parameters:
  *          - in: path
  *            name: id
- *            required: true
+ *            default: 3
  *            type: integer
  *          - in: body
  *            name: met a jour
@@ -204,7 +204,7 @@
  *      parameters:
  *          - in: path
  *            name: id
- *            required: true
+ *            default: 3
  *            type: integer
  *      responses:
  *          '200':
@@ -226,9 +226,8 @@
  *      parameters:
  *          - in: path
  *            name: id
- *            required: true
+ *            default: 3
  *            type: integer
- *            example: 2
  *          - in: body
  *            name: active
  *            description: informations sur le service que le prestataire veut activer
@@ -262,9 +261,8 @@
  *      parameters:
  *          - in: path
  *            name: id
- *            required: true
+ *            default: 3
  *            type: integer
- *            example: 2
  *          - in: body
  *            name: active
  *            description: informations sur le service que le prestataire veut désactiver
@@ -298,7 +296,7 @@
  *      parameters:
  *          - in: path
  *            name: id
- *            required: true
+ *            default: 3
  *            type: integer
  *      responses:
  *          '200':
@@ -320,7 +318,7 @@
  *      parameters:
  *          - in: path
  *            name: id
- *            required: true
+ *            default: 3
  *            type: integer
  *          - in: body
  *            name: créneau
@@ -336,10 +334,10 @@
  *                      type: string
  *                      minLength: 1
  *                      maxLength: 45
- *                      example: '2023-01-13'
+ *                      example: '2023-12-13'
  *                  hour:
  *                      type: string
- *                      example: '14:00:00'
+ *                      example: '18:00:00'
  *                  standId:
  *                      type: integer
  *                      example: 5

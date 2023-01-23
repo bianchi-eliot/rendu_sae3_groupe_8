@@ -2,7 +2,7 @@
  * @swagger
  * /map/:
  *   get:
- *      description: Affiche les prestataires qui font leur prestation au moment où la page est consultée
+ *      description: Affiche les prestataires qui font leur prestation en ce moment
  *      tags:
  *          - carte interactive
  *      responses:

@@ -5,12 +5,17 @@ URL de la documentation swagger : http://localhost:3000/api/v1/api-docs/
 
 ## Initialiser le dossier ./client
 ```
-$ npm i  puis  $ npm run serve  dans le dossier 
+$ npm install  puis  $ npm run serve  dans le dossier 
 ```
 
 ## Initialiser le dossier ./server
 ```
-$ npm i  puis  $ npm run start  dans le dossier
+$ npm install puis  $ npm run start  dans le dossier
+```
+
+## Utiliser le module node "pg"
+```
+Dans le fichier ./server/db_V1.0.js : compléter les informations sur la base de données
 ```
 
 ## Initialiser la base de données

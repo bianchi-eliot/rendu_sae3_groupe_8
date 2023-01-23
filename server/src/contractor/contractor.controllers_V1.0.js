@@ -23,7 +23,6 @@ async function logIn(req,res) {
 async function signIn(req, res) {
     try {
         const { lastName, firstName, email, info, password, idActivity, idRole, idSociety } = req.body
-        console.log(req.body)
         let tab = null
         if (parseInt(idRole) === 2) {
             tab = [lastName, firstName, email, info, password, idActivity, 5, idSociety]

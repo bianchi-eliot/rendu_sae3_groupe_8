@@ -42,7 +42,7 @@
  *      parameters:
  *          - in: path
  *            name: id
- *            required: true
+ *            default: 2
  *            type: integer
  *      responses:
  *          '200':
