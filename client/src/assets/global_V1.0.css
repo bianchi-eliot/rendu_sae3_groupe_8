@@ -1,0 +1,41 @@
+@font-face {
+    font-family: 'Evildead';
+    src: url('../assets/font/evildead.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+ }
+
+*, *::before, *::after {
+    box-sizing: border-box;
+    font-family: Evildead;
+}
+
+:root {
+    --header-height: 80px;
+    --navbar-width: 100px;
+    --app-color: #42b983;
+
+    --light-white: ghostwhite;
+    --light-orange: #F4DDB6;
+    --dark-orange: #F7AA1B;
+    --light-blue: #2379e9;
+    --dark-blue: #1155ad;
+    --light-grey: #EDEDED;
+    --dark-grey: #999;
+
+    --yellow: hsl(60, 90%, 60%);
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    width: calc(100% - var(--navbar-width));
+    overflow-x: hidden;
+}
+
+/* Individual element */
+button, select {
+    background: none;
+    border: none;
+}
