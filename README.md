@@ -20,7 +20,7 @@ Dans le fichier ./server/db_V1.0.js : compléter les informations sur la base de
 
 ## Initialiser la base de données
 ```
-Dans une base de données PostgreSQL, utiliser la commande "\i <path>" vers le fichier "script_create_V1.0.sql" et "script_insert_V1.0.sql" dans le dossier ./implementation/scripts
+Dans une base de données PostgreSQL, utiliser la commande "\i <path>" vers le fichier "script_create_V1.0.sql" et "script_insert_V1.0.sql" dans le dossier ./implementation/jeux_de_donnees
 ```
 
 ## Voir les routes swagger
