@@ -7,10 +7,10 @@ Dans le fichier ./server/db_V1.0.js : compléter les informations sur la base de
 
 ## Créer la base de données
 ```
-\i implementation/scripts/script_create_V1.0.sql
+\i implementation/jeux_de_donnees/script_create_V1.0.sql
 ```
 
 ## Peupler la base de données
 ```
-\i implementation/scripts/script_insert_V1.0.sql
+\i implementation/jeux_de_donnees/script_insert_V1.0.sql
 ```
