@@ -3,6 +3,17 @@
 URL de la documentation swagger : http://localhost:3000/api/v1/api-docs/
 ```
 
+## Se connecter en tant qu'organisateur et valider des prestataires en attente :
+```
+Dans la page login, username: charlene@gmail.com  mot de passe: 123456
+```
+
+## Se connecter en tant que prestataire et activer des services / réserver des créneaux :
+```
+Se créer un compte en tant que prestataire puis le valider avec l'organisateur 
+ou dans la page login, username: argjentin@gmail.com  mot de passe: 123456
+```
+
 ## Initialiser le dossier ./client
 ```
 $ npm install  puis  $ npm run serve  dans le dossier 
@@ -10,7 +21,7 @@ $ npm install  puis  $ npm run serve  dans le dossier
 
 ## Initialiser le dossier ./server
 ```
-$ npm install puis  $ npm run start  dans le dossier
+$ npm install  puis  $ npm run start  dans le dossier
 ```
 
 ## Utiliser le module node "pg"
