@@ -14,6 +14,12 @@ Se créer un compte en tant que prestataire puis le valider avec l'organisateur
 ou dans la page login, username: argjentin@gmail.com  mot de passe: 123456
 ```
 
+## Participer à des services en tant que visiteur :
+```
+Se créer un compte en tant que client puis cliquer sur la page d'un prestataire ayant un créneau en ce moment dans la map intéractive
+ou dans la page login, username: bianchi@gmail.com  mot de passe: 123456
+```
+
 ## Initialiser le dossier ./client
 ```
 $ npm install  puis  $ npm run serve  dans le dossier 
