@@ -16,8 +16,8 @@ ou dans la page login, username: argjentin@gmail.com  mot de passe: 123456
 
 ## Participer à des services en tant que visiteur :
 ```
-Se créer un compte en tant que client puis cliquer sur la page d'un prestataire ayant un créneau en ce moment dans la map intéractive
-ou dans la page login, username: bianchi@gmail.com  mot de passe: 123456
+Se créer un compte en tant que visiteur puis cliquer sur la page d'un prestataire ayant un créneau en ce moment dans la map intéractive
+ou dans la page login, username: bianchi@gmail.com  mot de passe: 123456  puis cliquer sur la page d'un prestataire ayant un créneau en ce moment dans la map intéractive
 ```
 
 ## Initialiser le dossier ./client
