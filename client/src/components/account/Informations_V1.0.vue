@@ -34,7 +34,7 @@ export default {
     name: 'InformationsComponent',
     data() {
         return {
-            url: `http://localhost:3000/contractors/${this.$store.state.userId}`,
+            url: `http://localhost:3000/contractors/single`,
             societes: null,
             activities: null,
             contractor: null,

@@ -25,6 +25,12 @@
             </select>
         </div>
     </header>
+        <div>
+            <p>Role : {{ $store.state.userRole }}</p>
+            <p>Connected : {{ $store.state.connected }}</p>
+            <p>JSON : {{ $store.state.json }}</p>
+            <p>Localstorage : {{ ls }}</p>
+        </div>
 </template>
 
 <script>
@@ -33,6 +39,7 @@ export default {
     props: { extend: Boolean },
     data() {
         return {
+            ls: localStorage.getItem('json') ,
             language: 'EN',
             controlPressed: false
         }

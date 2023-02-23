@@ -20,6 +20,14 @@ export default {
         handleToggle() {
             this.extend = !this.extend
         }
+    },
+    created() {
+        if (localStorage.getItem('json')) {
+            this.$store.commit('autoLog', {
+                userRole: localStorage.getItem('role'),
+                json: localStorage.getItem('json')
+            })
+        }
     }
 }
 </script>

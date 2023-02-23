@@ -2,7 +2,6 @@ const contractorControllers = require('./contractor.controllers_V1.0.js')
 const express = require('express')
 const router = express.Router()
 
-router.post('/log-in', contractorControllers.logIn)
 
 router.post('/sign-in', contractorControllers.signIn)
 
@@ -10,7 +9,7 @@ router.get('/time-slots/:id', contractorControllers.getTimeSlots)
 
 router.get('/', contractorControllers.getAllContractor)
 
-router.get('/:id', contractorControllers.getContractor)
+router.get('/single', contractorControllers.getContractor)
 
 router.put('/:id', contractorControllers.updateContractor)
 

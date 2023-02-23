@@ -3,23 +3,6 @@ const servicesQueries = require('../services/services.queries_V1.0.js')
 const pool = require('../../db_V1.0.js')
 
 
-async function logIn(req,res) {
-    try {
-        const { email, password } = req.body
-        const results = await pool.query(contractorQueries.selectContractorByEmailAndPassword, [email, password])
-        if (results.rowCount === 0) res.send({ data: 2 })
-        else {
-            let userRole = 'client'
-            if (results.rows[0].id_role === 1) userRole = 'organiser'
-            else if (results.rows[0].id_role === 2) userRole = 'contractor'
-            res.send({ data: 0, userId: results.rows[0].id_personne, userRole })
-        }
-    } catch(err) {
-        console.log(err.message)
-        res.send({ data: 1 })
-    }
-}
-
 async function signIn(req, res) {
     try {
         const { lastName, firstName, email, info, password, idActivity, idRole, idSociety } = req.body
@@ -178,6 +161,6 @@ async function addTimeSlot(req, res) {
 }
 
 
-module.exports = { logIn, signIn, getContractor, getAllContractor, enableService, 
+module.exports = { signIn, getContractor, getAllContractor, enableService, 
     disableService, updateContractor, getAllActivatedServices, affluenceParPersonne, getTimeSlots,
 addTimeSlot }
