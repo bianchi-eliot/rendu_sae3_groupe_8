@@ -34,7 +34,6 @@ export default {
     name: 'InformationsComponent',
     data() {
         return {
-            url: `http://localhost:3000/contractors/single`,
             societes: null,
             activities: null,
             contractor: null,
@@ -52,10 +51,11 @@ export default {
                 societes: this.contractor.id_societe,
                 activities: this.contractor.id_activite,
             }
-            const results = await fetch(`http://localhost:3000/contractors/${this.$store.state.userId}`, {
+            const results = await fetch(`http://localhost:3000/contractors/`, {
                 method: 'PUT',
                 headers: {
-                    'Content-Type': 'application/json'
+                    'Content-Type': 'application/json',
+                    'authorization': `Bearer ${this.$store.state.json}`
                 },
                 body: JSON.stringify(data)
             })
@@ -78,7 +78,12 @@ export default {
         else this.activities = json.activities
 
         // Contractor
-        responce = await fetch(this.url)
+        responce = await fetch('http://localhost:3000/contractors/single', {
+            method: 'GET',
+            headers: {
+                'authorization': `Bearer ${this.$store.state.json}`
+            }
+        })
         json = await responce.json()
         if (json.data === 1) this.error = 'An error occured while loading the contractor'
         else this.contractor = json.contractorInfo

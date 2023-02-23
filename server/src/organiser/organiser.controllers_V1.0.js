@@ -3,6 +3,10 @@ const pool = require('../../db_V1.0.js')
 
 function validerUnPrestataire(req,res){
     try {
+        const { userRole } = req.user
+        if (userRole !== 'organiser') {
+            return res.send({ data: 1, message: 'Vous n\'êtes pas un organisateur' })
+        }
         const id = req.params.id
         pool.query(organiserQueries.changePersonsRole,[id], (error, results)=>{
             if (error) throw error
@@ -16,8 +20,11 @@ function validerUnPrestataire(req,res){
 }
 
 function refuserUnePersonneEnAttente(req,res){
-
     try {
+        const { userRole } = req.user
+        if (userRole !== 'organiser') {
+            return res.send({ data: 1, message: 'Vous n\'êtes pas un organisateur' })
+        }
         const id = req.params.id
         pool.query(organiserQueries.deletePersonOnWL,[id], (error, results)=>{
             if (error) throw error
@@ -29,6 +36,11 @@ function refuserUnePersonneEnAttente(req,res){
     }   
 }
 function listerLesPrestatairesEnAttente(req,res){
+
+    const { userRole } = req.user
+    if (userRole !== 'organiser') {
+        return res.send({ data: 1, message: 'Vous n\'êtes pas un organisateur' })
+    }
     pool.query(organiserQueries.getPersonOnWL, (error,results)=>{
         if(error) throw error
         if(results.rows == 0){
@@ -41,6 +53,10 @@ function listerLesPrestatairesEnAttente(req,res){
 
 
 function listerLesPrestataires(req, res) {
+    const { userRole } = req.user
+    if (userRole !== 'organiser') {
+        return res.send({ data: 1, message: 'Vous n\'êtes pas un organisateur' })
+    }
     pool.query(organiserQueries.getPersons, (error, results)=>{
         if (error) throw error
         if(results.rows == 0){

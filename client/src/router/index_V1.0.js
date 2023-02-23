@@ -47,12 +47,12 @@ const routes = [
     },
 
     {
-        path: '/contractor/:id/guest-book',
+        path: '/contractor/guest-book',
         name: 'guest-book',
         component: GuestBookView
     },
     {
-        path: '/contractor/:id/graph',
+        path: '/contractor/graph',
         name: 'graph',
         component: GraphView
     },
@@ -69,7 +69,7 @@ const routes = [
     },
 
     {
-        path: '/add-time-slot/:id',
+        path: '/add-time-slot',
         name: 'add-time-slot',
         component: AddTimeSlotView
     },

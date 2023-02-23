@@ -20,7 +20,11 @@ export default {
     },
     methods: {
         async add(id) {
-            const responce = await fetch(`http://localhost:3000/organiser/validateContractorOnWL/${id}`)
+            const responce = await fetch(`http://localhost:3000/organiser/validateContractorOnWL/${id}`, {
+                headers: {
+                    'authorization': `Bearer ${this.$store.state.json}`
+                },
+            })
             const data = await responce.json()
             if (data.data == 0) {
                 this.message = 'Prestataire ajouté'
@@ -29,7 +33,10 @@ export default {
         },
         async delete2(id) {
             const responce = await fetch(`http://localhost:3000/organiser/deleteContractorOnWL/${id}`, {
-                method: 'DELETE'
+                method: 'DELETE',           
+                headers: {
+                    'authorization': `Bearer ${this.$store.state.json}`
+                },
             })
             const data = await responce.json()
             if (data.data == 0) {
@@ -39,7 +46,10 @@ export default {
         }
     },
     async mounted() {
-        const responce = await fetch('http://localhost:3000/organiser/listContractorsOnWL')
+        const responce = await fetch('http://localhost:3000/organiser/listContractorsOnWL', {              
+                headers: {
+                    'authorization': `Bearer ${this.$store.state.json}`
+                },})
         this.contractors = await responce.json()
 
     }
