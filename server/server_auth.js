@@ -1,16 +1,12 @@
 require('dotenv').config()
+const cors = require('cors')
 const jwt = require('jsonwebtoken')
 const express = require('express')
 const app = express()
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
-app.use((req, res, next) => {
-    res.header('Access-Control-Allow-Origin', '*')
-    res.header('Access-Control-Allow-Methods', 'GET, POST, PATCH, PUT, DELETE')
-    res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept')
-    next()
-})
-const pool = require('./db')
+app.use(cors())
+const pool = require('../server_auth/db')
 
 
 app.post('/log-in', async (req,res) => {
@@ -35,7 +31,7 @@ app.post('/log-in', async (req,res) => {
 })
 
 
-const PORT = process.env.PORT
+const PORT = process.env.PORT_AUTH
 app.listen({ port: PORT }, () => {
     console.log(`Listen on port ${PORT}`)
 })
