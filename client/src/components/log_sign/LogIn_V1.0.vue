@@ -28,7 +28,7 @@ export default {
     methods: {
         async logIn() {
             const body = { email: this.email, password: this.password }
-            const responce = await fetch('http://localhost:3000/contractors/log-in', {
+            const responce = await fetch('http://localhost:5000/log-in', {
                 method: 'POST',
                 headers: {
                         'Content-Type': 'application/json'
@@ -37,9 +37,7 @@ export default {
             })
             const data = await responce.json()
             if (data.data === 0) {
-                this.$store.commit('setUserId', data.userId)
-                this.$store.commit('setUserRole', data.userRole)
-                this.$store.commit('toggleConnected')
+                this.$store.commit('logIn', data)
                 this.$router.push({ name: 'home', query: { connected: 'true' } })
             }
         }

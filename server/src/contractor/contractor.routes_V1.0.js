@@ -2,26 +2,26 @@ const contractorControllers = require('./contractor.controllers_V1.0.js')
 const express = require('express')
 const router = express.Router()
 
-router.post('/log-in', contractorControllers.logIn)
+const { auth } = require('../../tools/auth.tools')
 
-router.post('/sign-in', contractorControllers.signIn)
-
-router.get('/time-slots/:id', contractorControllers.getTimeSlots)
+router.get('/time-slots', auth, contractorControllers.getTimeSlots)
 
 router.get('/', contractorControllers.getAllContractor)
 
-router.get('/:id', contractorControllers.getContractor)
+router.get('/single', auth, contractorControllers.getContractor)
+router.get('/visitor/:id', contractorControllers.getContractorForVisitor)
 
-router.put('/:id', contractorControllers.updateContractor)
+router.put('/', auth, contractorControllers.updateContractor)
 
-router.get('/activated-services/:id', contractorControllers.getAllActivatedServices)
+router.get('/activated-services', auth, contractorControllers.getAllActivatedServices)
+router.get('/activated-services/visitor/:id', contractorControllers.getAllActivatedServicesForVisitor)
 
-router.post('/active/:id', contractorControllers.enableService)
+router.post('/active/:id', auth, contractorControllers.enableService)
 
-router.delete('/active/:id', contractorControllers.disableService)
+router.delete('/active/:id', auth, contractorControllers.disableService)
 
-router.get('/affluence/:id', contractorControllers.affluenceParPersonne)
+router.get('/affluence', auth, contractorControllers.affluenceParPersonne)
 
-router.post('/time-slot/:id', contractorControllers.addTimeSlot)
+router.post('/time-slot/', auth, contractorControllers.addTimeSlot)
 
 module.exports = router

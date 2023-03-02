@@ -4,9 +4,6 @@ const roles = `select * from roles where id_role != 'id_role'`
 const categories = 'select * from categories'
 const activites = 'select * from activites '
 
-const verifyEmail = 'select id_personne from personnes where email = $1'
-const insertPerson = 'insert into personnes (nom,prenom,email,infoPersonne,mot_de_passe,id_activite,id_role,id_societe) values ($1,$2,$3,$4,$5,$6,$7,$8)'
-
 const selectAllContractor = `
     SELECT DISTINCT personnes.id_personne, societes.id_societe, nom, prenom, nom_activite, 
         nom_societe, photo_marque
@@ -58,8 +55,8 @@ const getTimeSlots = `
     AND EXTRACT(MONTH FROM creneau) = $3 AND EXTRACT(YEAR FROM creneau) = $4
 `
 
-module.exports = {selectContractorByEmailAndPassword, verifyEmail, roles, 
+module.exports = {selectContractorByEmailAndPassword, roles, 
     categories, activites, selectContractorById, selectAllContractor, 
     enableAService,disableAService,insertTimeSlot,findTimeSlot,
-    updateContractor, selectContractorServices, insertPerson, showaffluenceParPersonne,
+    updateContractor, selectContractorServices, showaffluenceParPersonne,
 getTimeSlots}

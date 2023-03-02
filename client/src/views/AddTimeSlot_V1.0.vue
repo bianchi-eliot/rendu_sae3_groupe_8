@@ -39,10 +39,11 @@ export default {
     },
     methods: {
         async book() {
-            const responce = await fetch(`http://localhost:3000/contractors/time-slot/${this.$route.params.id}`, {
+            const responce = await fetch(`http://localhost:3000/contractors/time-slot`, {
                 method: 'POST',
                 headers: {
-                    'Content-Type': 'application/json'
+                    'Content-Type': 'application/json',
+                    'authorization': `Bearer ${this.$store.state.json}`
                 },
                 body: JSON.stringify({ date: this.date, hour: this.hour, standId: this.standId })
             })

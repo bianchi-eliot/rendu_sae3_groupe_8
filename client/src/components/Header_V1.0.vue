@@ -33,6 +33,7 @@ export default {
     props: { extend: Boolean },
     data() {
         return {
+            ls: localStorage.getItem('json') ,
             language: 'EN',
             controlPressed: false
         }

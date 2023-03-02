@@ -2,12 +2,14 @@ const organiserControllers = require('./organiser.controllers_V1.0.js')
 const express = require('express')
 const router = express.Router()
 
-router.get('/allContractors', organiserControllers.listerLesPrestataires)
+const { auth } = require('../../tools/auth.tools')
 
-router.get('/listContractorsOnWL', organiserControllers.listerLesPrestatairesEnAttente)
+router.get('/allContractors', auth, organiserControllers.listerLesPrestataires)
 
-router.get('/validateContractorOnWL/:id', organiserControllers.validerUnPrestataire)
+router.get('/listContractorsOnWL', auth, organiserControllers.listerLesPrestatairesEnAttente)
 
-router.delete('/deleteContractorOnWL/:id', organiserControllers.refuserUnePersonneEnAttente)
+router.get('/validateContractorOnWL/:id', auth, organiserControllers.validerUnPrestataire)
+
+router.delete('/deleteContractorOnWL/:id', auth, organiserControllers.refuserUnePersonneEnAttente)
 
 module.exports = router

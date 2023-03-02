@@ -37,7 +37,7 @@ export default {
                         borderWidth: 2
                     }
                 ],
-                url: `http://localhost:3000/contractors/affluence/${this.$route.params.id}`
+                url: `http://localhost:3000/contractors/affluence/`
             },
             options: {
                 responsive: true
@@ -45,7 +45,12 @@ export default {
         }
     },
     async mounted() {
-        const responce = await fetch(this.data.url)
+        const responce = await fetch(this.data.url, {
+            method: 'GET',
+            headers: {
+                'authorization': `Bearer ${this.$store.state.json}`
+            }
+        })
         const data = await responce.json()
 
         const labels = [8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20]

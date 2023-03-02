@@ -8,7 +8,7 @@
                 <p>Number of seats : {{ timeSlot.nb_place }}</p>
             </div>
         </div>
-        <router-link class="btn" :to="{ name: 'add-time-slot', params: { id: $store.state.userId } }">Add a time slot</router-link>
+        <router-link class="btn" :to="{ name: 'add-time-slot' }">Add a time slot</router-link>
     </section>
 </template>
 
@@ -17,12 +17,20 @@ export default {
     name: 'TimeSlotsComponent',
     data() {
         return {
-            timeSlots: null
+            timeSlots: null,
+            id: undefined
         }
     },
     async mounted() {
-        const responce = await fetch(`http://localhost:3000/contractors/time-slots/${this.$store.state.userId}`)
+        const responce = await fetch(`http://localhost:3000/contractors/time-slots`, {
+            method: 'GET',
+            headers: {
+                'authorization': `Bearer ${this.$store.state.json}`
+            }
+        })
         this.timeSlots = await responce.json()
+
+
     }
 }
 </script>

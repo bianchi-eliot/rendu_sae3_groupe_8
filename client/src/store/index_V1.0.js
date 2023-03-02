@@ -2,21 +2,35 @@ import { createStore } from 'vuex'
 
 export default createStore({
     state: {
-        userId: -1,
         userRole: 'client',
-        connected: false
+        connected: false,
+        json: undefined
     },
     getters: {
     },
     mutations: {
-        setUserId(state, id) {
-            state.userId = id
+        logIn(state, data) {
+            state.userRole = data.userRole
+            state.connected = true
+            state.json = data.token
+            console.log(data)
+            localStorage.setItem('role', data.userRole)
+            localStorage.setItem('json', data.token)
         },
-        setUserRole(state, role) {
-            state.userRole = role
+        /*signIn(state, data) {
+
+        },*/  
+        logOut(state) {
+            state.userRole = 'client'
+            state.connected = false
+            state.json = undefined
+            localStorage.removeItem('role')
+            localStorage.removeItem('json')
         },
-        toggleConnected(state) {
-            state.connected = !state.connected
+        autoLog(state, credentials) {
+            state.userRole = credentials.userRole
+            state.connected = true
+            state.json = credentials.json
         }
     },
     actions: {

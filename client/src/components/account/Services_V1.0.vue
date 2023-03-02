@@ -8,7 +8,7 @@
             </div>
 
             <div v-if="service.libelle_service === 'Guests\' book' & contractorServices.includes(service.id_service)">
-                <router-link :to="{ name: 'guest-book', params: { id: $store.state.userId } }" class="guest-book-btn">
+                <router-link :to="{ name: 'guest-book' }" class="guest-book-btn">
                     See people's comments
                 </router-link>
             </div>
@@ -24,7 +24,7 @@
             </div>
 
             <div v-else-if="service.libelle_service === 'Affluent graph' & contractorServices.includes(service.id_service)">
-                <router-link :to="{ name: 'graph', params: { id: $store.state.userId } }" class="graph-btn">
+                <router-link :to="{ name: 'graph' }" class="graph-btn">
                     See your graph
                 </router-link>
             </div>
@@ -42,7 +42,8 @@ export default {
             services: null,
             contractorServices: null,
             stars: null,
-            error: null
+            error: null,
+            id: undefined
         }
     },
     methods: {
@@ -52,29 +53,37 @@ export default {
               await fetch(`http://localhost:3000/contractors/active/${serviceId}`, {
                 method: 'DELETE',
                 headers: {
-                    'Content-Type': 'application/json'
+                    'Content-Type': 'application/json',
+                    'authorization': `Bearer ${this.$store.state.json}`
                 },
-                body: JSON.stringify({ idContractor: this.$store.state.userId })
+                body: JSON.stringify({ idContractor: this.id })
               })  
             } else {
               await fetch(`http://localhost:3000/contractors/active/${serviceId}`, {
                 method: 'POST',
                 headers: {
-                    'Content-Type': 'application/json'
+                    'Content-Type': 'application/json',
+                    'authorization': `Bearer ${this.$store.state.json}`
                 },
-                body: JSON.stringify({ idContractor: this.$store.state.userId })
+                body: JSON.stringify({ idContractor: this.id })
               })  
             }
         }
     },
     async mounted() {
-        let results = await fetch(`http://localhost:3000/contractors/activated-services/${this.$store.state.userId}`)
+        let results = await fetch(`http://localhost:3000/contractors/activated-services`, {
+            method: 'GET',
+            headers: {
+                'authorization': `Bearer ${this.$store.state.json}`
+            }
+        })
+
         let responce = await results.json()
         if (responce.data === 0) {
             this.contractorServices = responce.servicesActivated
             if (responce.stars[0].grade != null) {
                 this.stars = parseFloat(responce.stars[0].grade)
-                this.stars.toFixed(2)
+                this.stars = this.stars.toFixed(2)
             } else {
                 this.stars = 'No stars given yet'
             }

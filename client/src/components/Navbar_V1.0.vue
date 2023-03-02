@@ -107,9 +107,7 @@ export default {
     },
     methods: {
       logOut() {
-        this.$store.commit('setUserId', -1)
-        this.$store.commit('setUserRole', 'client')
-        this.$store.commit('toggleConnected')
+        this.$store.commit('logOut')
       }  
     },
     mounted() {

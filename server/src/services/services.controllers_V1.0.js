@@ -4,13 +4,14 @@ const pool = require('../../db_V1.0.js')
 
 async function addGuestBook(req, res) {
     try {
+        const { userId: idVisitor } = req.user
         const now = new Date()
         const jour = now.getDate()
         const mois = now.getMonth()+1
         const annee = now.getFullYear()
         const signatureDate = `${jour}/${mois}/${annee}`
 
-        const { idContractor, idVisitor, message } = req.body
+        const { idContractor, message } = req.body
 
         const verif = await pool.query(`SELECT id_visiteur FROM livre_dor WHERE id_visiteur = $1 AND id_prestataire = $2`
         , [idVisitor, idContractor])
@@ -33,8 +34,8 @@ async function addGuestBook(req, res) {
 
 async function getGuestBook(req, res) {
     try {
-        const idContractor = req.params.id
-        const guestBook = await pool.query(serviceQueries.selectGuestBookByContractorId, [idContractor])
+        const { userId } = req.user
+        const guestBook = await pool.query(serviceQueries.selectGuestBookByContractorId, [userId])
         res.send({ data: 0, guestBook: guestBook.rows })
     } catch(err) {
         console.log(err.message)
@@ -45,7 +46,8 @@ async function getGuestBook(req, res) {
 
 async function addStars(req, res) {
     try {
-        const { idContractor, idVisitor, stars } = req.body
+        const { userId: idVisitor } = req.user
+        const { idContractor, stars } = req.body
 
         const verif = await pool.query(`SELECT id_visiteur FROM stars WHERE id_visiteur = $1 AND id_prestataire = $2`, [idVisitor, idContractor])
 
@@ -67,8 +69,8 @@ async function addStars(req, res) {
 
 async function getStars(req, res) {
     try {
-        const idContractor = req.params.id
-        const grade = await pool.query(serviceQueries.selectStartsByContractorId, [idContractor])
+        const { userId } = req.user
+        const grade = await pool.query(serviceQueries.selectStartsByContractorId, [userId])
         res.send({ data: 0, grade: grade.rows[0].grade })
     } catch(err) {
         console.log(err.message)

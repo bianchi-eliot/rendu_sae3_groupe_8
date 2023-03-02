@@ -2,13 +2,15 @@ const servicesControllers = require('./services.controllers_V1.0.js')
 const express = require('express')
 const router = express.Router()
 
-router.post('/guest-book', servicesControllers.addGuestBook)
+const { auth } = require('../../tools/auth.tools')
 
-router.get('/guest-book/:id', servicesControllers.getGuestBook)
+router.post('/guest-book', auth, servicesControllers.addGuestBook)
 
-router.post('/stars', servicesControllers.addStars)
+router.get('/guest-book', auth, servicesControllers.getGuestBook)
 
-router.get('/stars/:id', servicesControllers.getStars)
+router.post('/stars', auth, servicesControllers.addStars)
+
+router.get('/stars', auth, servicesControllers.getStars)
 
 router.get('/', servicesControllers.getAllServices)
 

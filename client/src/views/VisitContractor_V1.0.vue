@@ -53,13 +53,13 @@ export default {
         async addComment() {
             const body = {
                 idContractor: this.$route.params.id,
-                idVisitor: this.$store.state.userId,
                 message: this.message
             }
             const responce = await fetch(`http://localhost:3000/services/guest-book`, {
                 method: 'POST',
                 headers: {
-                    'Content-Type': 'application/json'
+                    'Content-Type': 'application/json',
+                    'authorization': `Bearer ${this.$store.state.json}`
                 },
                 body: JSON.stringify(body)
             })
@@ -75,13 +75,13 @@ export default {
         async addStars() {
             const body = {
                 idContractor: this.$route.params.id,
-                idVisitor: this.$store.state.userId,
                 stars: this.stars
             }
             const responce = await fetch(`http://localhost:3000/services/stars`, {
                 method: 'POST',
                 headers: {
-                    'Content-Type': 'application/json'
+                    'Content-Type': 'application/json',
+                    'authorization': `Bearer ${this.$store.state.json}`
                 },
                 body: JSON.stringify(body)
             })
@@ -112,11 +112,11 @@ export default {
         }
     },  
     async mounted() {
-        let responce = await fetch(`http://localhost:3000/contractors/${this.$route.params.id}`)
+        let responce = await fetch(`http://localhost:3000/contractors/visitor/${this.$route.params.id}`)
         let data = await responce.json()
         this.contractor = data.contractorInfo
 
-        responce = await fetch(`http://localhost:3000/contractors/activated-services/${this.$route.params.id}`)
+        responce = await fetch(`http://localhost:3000/contractors/activated-services/visitor/${this.$route.params.id}`)
         data = await responce.json()
         if (data.data === 0) {
             this.servicesActivated = data.servicesActivated

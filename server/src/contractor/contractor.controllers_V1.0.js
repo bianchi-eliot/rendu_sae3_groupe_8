@@ -2,55 +2,21 @@ const contractorQueries = require('./contractor.queries_V1.0.js')
 const servicesQueries = require('../services/services.queries_V1.0.js')
 const pool = require('../../db_V1.0.js')
 
-
-async function logIn(req,res) {
-    try {
-        const { email, password } = req.body
-        const results = await pool.query(contractorQueries.selectContractorByEmailAndPassword, [email, password])
-        if (results.rowCount === 0) res.send({ data: 2 })
-        else {
-            let userRole = 'client'
-            if (results.rows[0].id_role === 1) userRole = 'organiser'
-            else if (results.rows[0].id_role === 2) userRole = 'contractor'
-            res.send({ data: 0, userId: results.rows[0].id_personne, userRole })
-        }
-    } catch(err) {
-        console.log(err.message)
-        res.send({ data: 1 })
-    }
-}
-
-async function signIn(req, res) {
-    try {
-        const { lastName, firstName, email, info, password, idActivity, idRole, idSociety } = req.body
-        let tab = null
-        if (parseInt(idRole) === 2) {
-            tab = [lastName, firstName, email, info, password, idActivity, 5, idSociety]
-        } else if (parseInt(idRole) === 4) {
-            tab = [lastName, firstName, email, info, password, null, idRole, null]
-        }
-
-        const results = await pool.query(contractorQueries.verifyEmail, [email])
-        if (results.rowCount === 1) res.send({ data: 2, message: 'email deja existant' })
-        else {
-            await pool.query(contractorQueries.insertPerson, tab)
-            if (parseInt(idRole) === 2) { 
-                res.send({ data: 0, message: 'prestataire mis en attente' })   
-            } else if (parseInt(idRole) === 4) {
-                const results = await pool.query(contractorQueries.verifyEmail, [email])
-                res.send({ data: 3, id: results.rows[0].id_personne, message: 'client crée' })
-            }
-        }
-    } catch(err) {
-        console.log(err.message)
-        res.send({ data: 1 })
-    }
-}
-
 async function getContractor(req, res){
     try {
-        const id = req.params.id || 2
-        const results = await pool.query(contractorQueries.selectContractorById, [id])
+        const { userId } = req.user
+        const results = await pool.query(contractorQueries.selectContractorById, [userId])
+        res.send({ data: 0, contractorInfo: results.rows[0] })
+    } catch(err) {
+        console.log(err.message)
+        res.send({ data: 1 })
+    }
+}
+
+async function getContractorForVisitor(req, res){
+    try {
+        const userId = req.params.id
+        const results = await pool.query(contractorQueries.selectContractorById, [userId])
         res.send({ data: 0, contractorInfo: results.rows[0] })
     } catch(err) {
         console.log(err.message)
@@ -69,9 +35,9 @@ async function getAllContractor(req, res) {
 
 async function enableService(req, res) {
     try {
-        const idContractor = req.body.idContractor
+        const { userId } = req.user
         const idService = req.params.id
-        await pool.query(contractorQueries.enableAService, [idContractor, idService])
+        await pool.query(contractorQueries.enableAService, [userId, idService])
         res.send({ data: 0, message: 'vous avez activé le service'})
     } catch(err) {
         console.log(err.message)
@@ -81,9 +47,9 @@ async function enableService(req, res) {
 
 async function disableService(req, res) {
     try {
-        const idContractor = req.body.idContractor
+        const { userId } = req.user
         const idService = req.params.id
-        await pool.query(contractorQueries.disableAService, [idContractor, idService])
+        await pool.query(contractorQueries.disableAService, [userId, idService])
         res.send({ data: 0, message: 'vous avez désactivé le service' })
     } catch(err) {
         console.log(err.message)
@@ -93,9 +59,9 @@ async function disableService(req, res) {
 
 async function updateContractor(req, res) {
     try {
-        const personneId = req.params.id
+        const { userId } = req.user
         const { lastname, firstname, email, info, societes, activities } = req.body
-        const tab = [lastname, firstname, email, info, activities, societes, personneId]
+        const tab = [lastname, firstname, email, info, activities, societes, userId]
         await pool.query(contractorQueries.updateContractor, tab)
         res.send({ data: 0, message: 'prestataire mis à jour' })
     } catch(err) {
@@ -106,12 +72,28 @@ async function updateContractor(req, res) {
 
 async function getAllActivatedServices(req, res) {
     try {
-        const contractorId = req.params.id
+        const { userId } = req.user
         let servicesActivated = await pool.query(contractorQueries.selectContractorServices, 
-            [contractorId])
+            [userId])
         servicesActivated = servicesActivated.rows.map(service => service.id_service)
 
-        const stars = await pool.query(servicesQueries.selectStartsByContractorId, [contractorId])
+        const stars = await pool.query(servicesQueries.selectStartsByContractorId, [userId])
+        
+        res.send({ data: 0, servicesActivated, stars: stars.rows })
+    } catch(err) {
+        console.log(err.message)
+        res.send({ data: 1 })
+    }
+}
+
+async function getAllActivatedServicesForVisitor(req, res) {
+    try {
+        const  userId = req.params.id
+        let servicesActivated = await pool.query(contractorQueries.selectContractorServices, 
+            [userId])
+        servicesActivated = servicesActivated.rows.map(service => service.id_service)
+
+        const stars = await pool.query(servicesQueries.selectStartsByContractorId, [userId])
         
         res.send({ data: 0, servicesActivated, stars: stars.rows })
     } catch(err) {
@@ -122,8 +104,8 @@ async function getAllActivatedServices(req, res) {
 
 async function affluenceParPersonne(req,res){
     try {
-        const idContractor = req.params.id
-        const results = await pool.query(contractorQueries.showaffluenceParPersonne, [idContractor])
+        const { userId } = req.user
+        const results = await pool.query(contractorQueries.showaffluenceParPersonne, [userId])
         if(results.rows == 0){res.send({data: 'vous n\'avez pas encore eu de visites'})}
         res.send({ data: results.rows })
     } catch(err){
@@ -135,12 +117,12 @@ async function affluenceParPersonne(req,res){
 
 async function getTimeSlots(req, res) {
     try {
-        const id = req.params.id
+        const { userId } = req.user
         const date = new Date()
         const day = date.getDate()
         const month = date.getMonth() + 1
         const year = date.getFullYear()
-        const tab = [id, day, month, year]
+        const tab = [userId, day, month, year]
         const timeSlots = await pool.query(contractorQueries.getTimeSlots, tab)
         timeSlots.rows.forEach(timeSlot => {
             const creneau = new Date(timeSlot.creneau)
@@ -156,7 +138,7 @@ async function getTimeSlots(req, res) {
 
 async function addTimeSlot(req, res) {
     try {
-        const id = req.params.id
+        const { userId } = req.user
         const { date, hour, standId } = req.body
         
         if (date == '' || hour ==  -1 || standId ==  -1) {
@@ -168,7 +150,7 @@ async function addTimeSlot(req, res) {
         const results = await pool.query(contractorQueries.findTimeSlot, [date2, standId])
         if (results.rowCount !== 0) res.send({ data: 2, message: 'stand deja reserve' })
         else {
-            await pool.query(contractorQueries.insertTimeSlot, [id, standId, date2])
+            await pool.query(contractorQueries.insertTimeSlot, [userId, standId, date2])
             res.send({ data: 0, message: 'stand reserve' })
         }
     } catch(err) {
@@ -178,6 +160,6 @@ async function addTimeSlot(req, res) {
 }
 
 
-module.exports = { logIn, signIn, getContractor, getAllContractor, enableService, 
+module.exports = { getContractor, getAllContractor, enableService, 
     disableService, updateContractor, getAllActivatedServices, affluenceParPersonne, getTimeSlots,
-addTimeSlot }
+addTimeSlot, getContractorForVisitor, getAllActivatedServicesForVisitor}

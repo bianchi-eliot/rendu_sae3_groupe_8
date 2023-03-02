@@ -15,13 +15,18 @@ export default {
     name: 'GuestBookView',
     data() {
         return {
-            url: `http://localhost:3000/services/guest-book/${this.$route.params.id}`,
+            url: `http://localhost:3000/services/guest-book`,
             guestsBook: null,
             error: null
         }
     },
     async mounted() {
-        const responce = await fetch(this.url)
+        const responce = await fetch(this.url, {
+            method: 'GET',
+            headers: {
+                'authorization': `Bearer ${this.$store.state.json}`
+            },
+        })
         const result = await responce.json()
         if (result.data === 0) this.guestsBook = result.guestBook
         else if (result.data === 1) this.error = 'An error occured while loading the guest\'s book'
