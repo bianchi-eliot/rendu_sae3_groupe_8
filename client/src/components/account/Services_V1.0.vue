@@ -53,7 +53,8 @@ export default {
               await fetch(`http://localhost:3000/contractors/active/${serviceId}`, {
                 method: 'DELETE',
                 headers: {
-                    'Content-Type': 'application/json'
+                    'Content-Type': 'application/json',
+                    'authorization': `Bearer ${this.$store.state.json}`
                 },
                 body: JSON.stringify({ idContractor: this.id })
               })  
@@ -61,7 +62,8 @@ export default {
               await fetch(`http://localhost:3000/contractors/active/${serviceId}`, {
                 method: 'POST',
                 headers: {
-                    'Content-Type': 'application/json'
+                    'Content-Type': 'application/json',
+                    'authorization': `Bearer ${this.$store.state.json}`
                 },
                 body: JSON.stringify({ idContractor: this.id })
               })  

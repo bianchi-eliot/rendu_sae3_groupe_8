@@ -4,9 +4,6 @@ const router = express.Router()
 
 const { auth } = require('../../tools/auth.tools')
 
-
-router.post('/sign-in', contractorControllers.signIn)
-
 router.get('/time-slots', auth, contractorControllers.getTimeSlots)
 
 router.get('/', contractorControllers.getAllContractor)
@@ -19,9 +16,9 @@ router.put('/', auth, contractorControllers.updateContractor)
 router.get('/activated-services', auth, contractorControllers.getAllActivatedServices)
 router.get('/activated-services/visitor/:id', contractorControllers.getAllActivatedServicesForVisitor)
 
-router.post('/active', auth, contractorControllers.enableService)
+router.post('/active/:id', auth, contractorControllers.enableService)
 
-router.delete('/active', auth, contractorControllers.disableService)
+router.delete('/active/:id', auth, contractorControllers.disableService)
 
 router.get('/affluence', auth, contractorControllers.affluenceParPersonne)
 

@@ -36,8 +36,12 @@ const swaggerDocs = swaggerJsDoc(swaggerOption)
 
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
-app.use(cors())
-
+app.use(
+    cors({
+        origin: '*',
+        methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE']
+    })
+)
 app.use('/api/v1/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocs))
 app.use('/', rootRoutes)
 app.use('/map', mapRoutes)

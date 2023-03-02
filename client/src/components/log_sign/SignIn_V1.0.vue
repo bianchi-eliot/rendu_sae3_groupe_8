@@ -51,7 +51,7 @@ export default {
     name: 'SignInComponent',
     data() {
         return {
-            url: 'http://localhost:3000/contractors/sign-in',
+            url: 'http://localhost:5000/sign-in',
             messageForm: '',
 
             idActivity: -1,
@@ -98,9 +98,7 @@ export default {
             if (json.data === 0) {
                 this.$router.push({ name: 'home', query: { contractorAccount: 'true' } })
             } else if (json.data === 3) {
-                this.$store.commit('setUserId', json.id)
-                this.$store.commit('setUserRole', 'client')
-                this.$store.commit('toggleConnected')
+                this.$store.commit('logIn', json)
                 this.$router.push({ name: 'home', query: { clientAccount: 'true' } })
             }
             else if (json.data === 2) this.messageForm = 'This email address already exists'
