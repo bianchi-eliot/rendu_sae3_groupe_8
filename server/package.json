@@ -7,17 +7,21 @@
     "start": "nodemon server_V1.0.js",
     "startAuth": "nodemon server_auth.js",
     "test": "jest",
-    "testCoverage": "jest --coverage"
+    "testCoverage": "jest --coverage",
+    "scrapping": "node scrapper.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
     "axios": "^1.3.4",
+    "cheerio": "^1.0.0-rc.12",
     "cors": "^2.8.5",
     "dotenv": "^16.0.3",
     "express": "^4.18.2",
+    "helmet": "^6.0.1",
     "joi": "^17.7.0",
+    "json2csv": "^6.0.0-alpha.2",
     "jsonwebtoken": "^9.0.0",
     "pg": "^8.8.0",
     "swagger-jsdoc": "^6.2.5",

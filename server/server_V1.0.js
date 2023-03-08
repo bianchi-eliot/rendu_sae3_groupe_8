@@ -12,6 +12,7 @@ const app = express()
 const swaggerJsDoc = require('swagger-jsdoc')
 const swaggerUi = require('swagger-ui-express')
 const cors = require('cors')
+const helmet = require('helmet')
 
 const swaggerOption = {
     swaggerDefinition: (swaggerJsDoc.Options = {
@@ -42,6 +43,7 @@ app.use(
         methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE']
     })
 )
+app.use(helmet())
 app.use('/api/v1/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocs))
 app.use('/', rootRoutes)
 app.use('/map', mapRoutes)

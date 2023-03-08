@@ -28,6 +28,10 @@ export default {
                 json: localStorage.getItem('json')
             })
         }
+    },
+    async mounted() {
+        const res = await fetch('http://localhost:3000/')
+        console.log(res)
     }
 }
 </script>
