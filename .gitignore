@@ -4,9 +4,3 @@ client/package-lock.json
 
 server/node_modules
 server/package-lock.json
-server/.env
-
-
-server_auth/node_modules
-server_auth/package-lock.json
-server_auth/.env
