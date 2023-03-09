@@ -5,7 +5,8 @@ const pool = require('../../db_V1.0.js')
 
 async function getHome(req, res) {
     const brands = await pool.query(rootQueries.selectAllSocietes)
-    res.send(brands.rows)
+    //res.send(brands.rows)
+    res.send('<h1>Hello World</h1>\n')
     //res.status(200).render('home.pug', { navbarData, brands: brandsJSON })
 }
 

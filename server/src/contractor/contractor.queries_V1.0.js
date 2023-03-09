@@ -1,3 +1,12 @@
+/* 
+    const {userQuery} = req.params;
+    const onlyLettersPattern = /^[A-Za-z]+$/;
+
+    if(!userQuery.match(onlyLettersPattern)){
+      return res.status(400).json({ err: "No special characters and no numbers, please!"})
+    }
+*/
+
 const selectContractorByEmailAndPassword = 'select * from personnes where email = $1 and mot_de_passe = $2 and id_role != 5'
 // récupérer les données pour le formulaire
 const roles = `select * from roles where id_role != 'id_role'`
