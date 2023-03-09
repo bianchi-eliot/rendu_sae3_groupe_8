@@ -4,6 +4,9 @@ const router = express.Router()
 
 const { auth } = require('../../tools/auth.tools')
 
+const cache = require('../../routeCache')
+
+
 router.post('/guest-book', auth, servicesControllers.addGuestBook)
 
 router.get('/guest-book', auth, servicesControllers.getGuestBook)

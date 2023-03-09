@@ -2,7 +2,9 @@ const rootControllers = require('./root.controllers_V1.0.js')
 const express = require('express')
 const router = express.Router()
 
-router.get('/', rootControllers.getHome)
+const cache = require('../../routeCache')
+
+router.get('/',cache(300), rootControllers.getHome)
 
 router.get('/login-signup', rootControllers.getLogInSignUp)
   

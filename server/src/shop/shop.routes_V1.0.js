@@ -2,7 +2,9 @@ const shopControllers = require('./shop.controllers_V1.0.js')
 const express = require('express')
 const router = express.Router()
 
-router.get('/', shopControllers.list)
+const cache = require('../../routeCache')
+
+router.get('/',cache(300), shopControllers.list)
 
 router.get('/societes', shopControllers.allSocietes)
 router.get('/types_pieces', shopControllers.allTypesPieces)
