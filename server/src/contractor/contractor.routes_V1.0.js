@@ -4,6 +4,9 @@ const router = express.Router()
 
 const { auth } = require('../../tools/auth.tools')
 
+const cache = require('../../routeCache')
+
+
 router.get('/time-slots', auth, contractorControllers.getTimeSlots)
 
 router.get('/', contractorControllers.getAllContractor)

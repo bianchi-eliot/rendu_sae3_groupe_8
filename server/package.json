@@ -23,6 +23,7 @@
     "joi": "^17.7.0",
     "json2csv": "^6.0.0-alpha.2",
     "jsonwebtoken": "^9.0.0",
+    "node-cache": "^5.1.2",
     "pg": "^8.8.0",
     "socket.io": "^4.6.1",
     "swagger-jsdoc": "^6.2.5",

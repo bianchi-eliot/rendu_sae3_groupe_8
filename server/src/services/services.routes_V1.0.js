@@ -12,6 +12,9 @@ router.get('/guest-book-contractors', auth, servicesControllers.getContractorsGu
 
 router.get('/start-contractors', servicesControllers.getContractorsStart)
 
+const cache = require('../../routeCache')
+
+
 router.post('/guest-book', auth, servicesControllers.addGuestBook)
 
 router.get('/guest-book', auth, servicesControllers.getGuestBook)
