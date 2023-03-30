@@ -113,7 +113,7 @@ async function getAllContractorsInfluence(req, res) {
             return res.send({ data: 1, message: 'Vous n\'êtes pas un organisateur' })
         }
         const results = await pool.query('SELECT tranche_horaire, compteur FROM affluence_sur_page')
-        if(results.rows == 0){res.send({data: 'No data'})}
+        if(results.rows == 0){return res.send({data: 'No data'})}
         res.send({ data: results.rows })
     } catch(err){
         console.log(err.message)
@@ -132,7 +132,7 @@ async function getContractorsVisit(req, res) {
             INNER JOIN personnes ON personnes.id_personne = affluence_sur_page.id_personne
             GROUP BY personnes.id_personne
         `)
-        if(results.rows == 0){res.send({data: 'No data'})}
+        if(results.rows == 0){return res.send({data: 'No data'})}
         res.send({ data: results.rows })
     } catch(err){
         console.log(err.message)
@@ -151,7 +151,7 @@ async function getContractorsGuestBooks(req, res) {
             INNER JOIN personnes ON personnes.id_personne = livre_dor.id_prestataire
             GROUP BY personnes.id_personne
         `)
-        if(results.rows == 0){res.send({data: 'No data'})}
+        if(results.rows == 0){return res.send({data: 'No data'})}
         res.send({ data: results.rows })
     } catch(err){
         console.log(err.message)
@@ -166,7 +166,7 @@ async function getContractorsStart(req, res) {
             INNER JOIN personnes ON personnes.id_personne = stars.id_prestataire
             GROUP BY personnes.id_personne
         `)
-        if(results.rows == 0){res.send({data: 'No data'})}
+        if(results.rows == 0){return res.send({data: 'No data'})}
         res.send({ data: results.rows })
     } catch(err){
         console.log(err.message)

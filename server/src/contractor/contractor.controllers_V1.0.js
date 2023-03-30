@@ -106,7 +106,7 @@ async function affluenceParPersonne(req,res){
     try {
         const { userId } = req.user
         const results = await pool.query(contractorQueries.showaffluenceParPersonne, [userId])
-        if(results.rows == 0){res.send({data: 'vous n\'avez pas encore eu de visites'})}
+        if(results.rows == 0){return res.send({data: 'vous n\'avez pas encore eu de visites'})}
         res.send({ data: results.rows })
     } catch(err){
         console.log(err.message)

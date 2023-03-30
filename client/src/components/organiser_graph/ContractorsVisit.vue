@@ -28,7 +28,6 @@ export default {
                   borderWidth: 2
               },
           ],
-          url: `http://localhost:3000/services/contractors-influence`
       },
     }
   },

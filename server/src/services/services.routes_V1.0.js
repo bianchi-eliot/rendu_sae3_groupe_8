@@ -1,6 +1,7 @@
 const servicesControllers = require('./services.controllers_V1.0.js')
 const express = require('express')
 const router = express.Router()
+const cache = require('../../routeCache')
 
 const { auth } = require('../../tools/auth.tools')
 
@@ -12,7 +13,6 @@ router.get('/guest-book-contractors', auth, servicesControllers.getContractorsGu
 
 router.get('/start-contractors', servicesControllers.getContractorsStart)
 
-const cache = require('../../routeCache')
 
 
 router.post('/guest-book', auth, servicesControllers.addGuestBook)
