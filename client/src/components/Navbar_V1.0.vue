@@ -42,6 +42,18 @@
                     <span class="navbar-title">Planning</span> 
                 </router-link>
             </li>
+            <li class="navbar-list-element">
+                <router-link :to="{ name: 'chat' }"> 
+                    <svg width="64" height="64" viewBox="0 0 16.933333 16.933333">
+                        <rect style="stroke-width:0" width="14.816667" height="10.583333" x="1.0583339" y="1.0583339" ry="1.5875" rx="1.5875" />
+                        <path style="stroke-width:0" d="m 3.4395838,11.641667 v 4.233332 l 4.2333316,-4.233332 z" />
+                        <circle style="fill:#ffffff; stroke-width:0" cx="4.7625003" cy="6.3499999" r="1.0583329" />
+                        <circle style="fill:#ffffff; stroke-width:0" cx="8.4666662" cy="6.3499999" r="1.0583329" />
+                        <circle style="fill:#ffffff;stroke-width:0" cx="12.170834" cy="6.3499999" r="1.0583329" />
+                    </svg>       
+                    <span class="navbar-title">Messages</span>  
+                </router-link>  
+            </li>
             <li v-if="!$store.state.connected" class="navbar-list-element">
                 <router-link :to="{ name: 'log-sign' }"> 
                     <svg width="64" height="64" viewBox="0 0 16.933333 16.933333">
@@ -85,8 +97,64 @@
 
         <ul v-if="$store.state.userRole === 'organiser'" class="navbar-list">
             <li class="navbar-list-element">
+                <router-link :to="{ name: 'contractors-graph' }"> 
+                    <svg width="64" height="64" viewBox="0 0 16.933333 16.933333">
+                        <rect style="fill:#000000;stroke:#ffffff;stroke-width:0;stroke-linecap:square;paint-order:fill markers stroke"
+                        width="4.2333326"
+                        height="11.641665"
+                        x="11.641667"
+                        y="4.2333341"
+                        rx="1.3658662"
+                        ry="0" />
+                        <rect
+                        style="fill:#000000;stroke:#ffffff;stroke-width:0;stroke-linecap:square;paint-order:fill markers stroke"
+                        width="4.2333322"
+                        height="14.816666"
+                        x="6.3500004"
+                        y="1.0583339"
+                        rx="1.3658662"
+                        ry="0" />
+                        <rect
+                        style="fill:#000000;stroke:#ffffff;stroke-width:0;stroke-linecap:square;paint-order:fill markers stroke"
+                        id="rect111-6"
+                        width="4.2333326"
+                        height="7.4083323"
+                        x="1.0583339"
+                        y="8.4666672"
+                        rx="1.3658662"
+                        ry="0" />
+                    </svg>
+
+                    <span class="navbar-title">Graph</span> 
+                </router-link>
+            </li>
+            <li class="navbar-list-element">
                 <router-link :to="{ name: 'pending-contractors' }"> 
-                    <img :src="require(`../assets/jpg/clock.png`)">
+                    <svg width="64" height="64" viewBox="0 0 16.933333 16.933333">
+                        <ellipse
+                        style="fill:none;stroke:#000000;stroke-width:1.25543;stroke-linecap:square;stroke-dasharray:none;stroke-opacity:1;paint-order:fill markers stroke"
+                        cx="8.4666653"
+                        cy="8.4666681"
+                        rx="6.7806182"
+                        ry="6.7806191" />
+                        <rect
+                        style="fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:0.321516;stroke-linecap:square;stroke-dasharray:none;stroke-opacity:1;paint-order:fill markers stroke"
+                        width="1.2319533"
+                        height="6.2915621"
+                        x="7.8093014"
+                        y="3.3833561"
+                        rx="0.47020963"
+                        transform="matrix(0.99998463,-0.00554446,0.00635876,0.99997978,0,0)" />
+                        <rect
+                        style="fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:0.290044;stroke-linecap:square;stroke-dasharray:none;stroke-opacity:1;paint-order:fill markers stroke"
+                        width="1.2614243"
+                        height="5.0004973"
+                        x="-2.986757"
+                        y="11.729722"
+                        rx="0.48145804"
+                        transform="matrix(0.59347849,-0.80484985,0.80715141,0.59034448,0,0)" />
+                    </svg>
+
                     <span class="navbar-title">Pending</span> 
                 </router-link>
             </li>

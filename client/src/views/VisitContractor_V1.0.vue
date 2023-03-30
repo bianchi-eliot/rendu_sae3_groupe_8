@@ -51,6 +51,12 @@ export default {
     },
     methods: {
         async addComment() {
+            const badWords = ['putain', 'merde', 'connard', 'fuck', 'slut']
+            const bool = badWords.some(word => this.message.match(word) )
+            if (bool == true) {
+                this.commentResponce = 'Veuillez adopter un vocabulaire courtois'
+                return
+            }
             const body = {
                 idContractor: this.$route.params.id,
                 message: this.message

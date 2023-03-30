@@ -5,10 +5,18 @@ const shopRoutes = require('./src/shop/shop.routes_V1.0.js')
 const organiserRoutes = require('./src/organiser/organiser.routes_V1.0.js')
 const servicesRoutes = require('./src/services/services.routes_V1.0.js')
 
+
 require('dotenv').config()
 const PORT = process.env.PORT || 3000
 const express = require('express')
 const app = express()
+const server = require('http').createServer(app)
+const io = require('socket.io')(server, {
+    cors: {
+        origin: ['http://localhost:8080'],
+    }
+})
+
 const swaggerJsDoc = require('swagger-jsdoc')
 const swaggerUi = require('swagger-ui-express')
 const cors = require('cors')
@@ -52,4 +60,12 @@ app.use('/shop', shopRoutes)
 app.use('/organiser', organiserRoutes)
 app.use('/services', servicesRoutes)
 
-app.listen(PORT, console.log(`Listen on localhost:${PORT}`))
+io.on('connection', socket => {
+    console.log('socket id :' + socket.id)
+
+    socket.on('send-message-general', (message, owner) => {
+        socket.broadcast.emit('receive-message-general', { content: message, owner })
+    })
+})
+
+server.listen(PORT, console.log(`Listen on localhost:${PORT}`))

@@ -13,6 +13,9 @@ import VisitContractorView from '../views/VisitContractor_V1.0.vue'
 import AddTimeSlotView from '../views/AddTimeSlot_V1.0.vue'
 
 import PendingContractors from '../views/PendingContractors_V1.0.vue'
+import ContractorsGraph from '../views/ContractorsGraph.vue'
+
+import ChatView from '@/views/ChatView.vue'
 
 const routes = [
     {
@@ -56,6 +59,7 @@ const routes = [
         name: 'graph',
         component: GraphView
     },
+    
     {
         path: '/log-out',
         name: 'log-out',
@@ -78,6 +82,17 @@ const routes = [
         path: '/pending-contractors',
         name: 'pending-contractors',
         component: PendingContractors
+    },
+    {
+        path: '/contractors-graph',
+        name: 'contractors-graph',
+        component: ContractorsGraph
+    },
+
+    {
+        path: '/chat',
+        name: 'chat',
+        component: ChatView
     }
 ]
 

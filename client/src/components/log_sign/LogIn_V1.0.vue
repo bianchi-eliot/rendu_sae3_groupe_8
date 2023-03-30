@@ -31,7 +31,7 @@ export default {
     },
     methods: {
         async logIn() {
-            /*const body = { email: this.email, password: this.password }
+            const body = { email: this.email, password: this.password }
             const responce = await fetch('http://localhost:5000/log-in', {
                 method: 'POST',
                 headers: {
@@ -43,7 +43,7 @@ export default {
             if (data.data === 0) {
                 this.$store.commit('logIn', data)
                 this.$router.push({ name: 'home', query: { connected: 'true' } })
-            }*/
+            }
         }
     }
 }

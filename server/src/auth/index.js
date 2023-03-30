@@ -19,6 +19,7 @@ async function logIn(req, res) {
   try {
       const { email, password } = req.body
       const results = await pool.query(LOG_IN, [email, password])
+      console.log(results.rows)
       if (results.rowCount === 0) res.send({ data: 2, message: 'Wrong username/password' })
       else {
           let userRole = 'client'
@@ -28,7 +29,12 @@ async function logIn(req, res) {
               userId: results.rows[0].id_personne,
               userRole 
           }, 'cle_secrete', { expiresIn: '1h' })
-          res.send({ data: 0, token, userRole })
+          res.send({ 
+            data: 0, 
+            token, 
+            userRole, 
+            name: `${results.rows[0].nom} ${results.rows[0].prenom}`
+        })
       }
   } catch(err) {
       console.log(err.message)
@@ -65,7 +71,9 @@ async function signIn(req, res) {
               res.send({ 
                 data: 3, 
                 message: 'client crée',
-                token })
+                token,
+                name: `${lastName} ${firstName}`
+            })
           }
       }
   } catch(err) {

@@ -4,6 +4,14 @@ const router = express.Router()
 
 const { auth } = require('../../tools/auth.tools')
 
+router.get('/contractors-influence', auth, servicesControllers.getAllContractorsInfluence)
+
+router.get('/visit-contractors', auth, servicesControllers.getContractorsVisit)
+
+router.get('/guest-book-contractors', auth, servicesControllers.getContractorsGuestBooks)
+
+router.get('/start-contractors', servicesControllers.getContractorsStart)
+
 router.post('/guest-book', auth, servicesControllers.addGuestBook)
 
 router.get('/guest-book', auth, servicesControllers.getGuestBook)

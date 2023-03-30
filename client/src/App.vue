@@ -25,7 +25,8 @@ export default {
         if (localStorage.getItem('json')) {
             this.$store.commit('autoLog', {
                 userRole: localStorage.getItem('role'),
-                json: localStorage.getItem('json')
+                json: localStorage.getItem('json'),
+                name: localStorage.getItem('name')
             })
         }
     },
