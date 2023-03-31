@@ -45,7 +45,7 @@ CREATE TABLE personnes(
    prenom VARCHAR(255),
    email VARCHAR(255),
    infoPersonne TEXT,
-   mot_de_passe VARCHAR(255),
+   mot_de_passe VARCHAR(999),
    id_activite INT,
    id_role INT NOT NULL,
    id_societe INT,

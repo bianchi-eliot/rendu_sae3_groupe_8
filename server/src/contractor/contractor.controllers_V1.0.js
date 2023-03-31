@@ -1,12 +1,16 @@
 const contractorQueries = require('./contractor.queries_V1.0.js')
 const servicesQueries = require('../services/services.queries_V1.0.js')
 const pool = require('../../db_V1.0.js')
+const escapeHtml = require('escape-html')
 
 async function getContractor(req, res){
     try {
         const { userId } = req.user
         const results = await pool.query(contractorQueries.selectContractorById, [userId])
         res.send({ data: 0, contractorInfo: results.rows[0] })
+        //const escapedResult = escapeHtml(JSON.stringify(results.rows[0])) // Prévention des attaques XSS
+        //res.send({ data: 0, contractorInfo: JSON.parse(escapedResult) })
+
     } catch(err) {
         console.log(err.message)
         res.send({ data: 1 })
@@ -18,6 +22,9 @@ async function getContractorForVisitor(req, res){
         const userId = req.params.id
         const results = await pool.query(contractorQueries.selectContractorById, [userId])
         res.send({ data: 0, contractorInfo: results.rows[0] })
+        //const escapedResult = escapeHtml(JSON.stringify(results.rows[0])) // Prévention des attaques XSS
+        //res.send({ data: 0, contractorInfo: JSON.parse(escapedResult) })
+
     } catch(err) {
         console.log(err.message)
         res.send({ data: 1 })
@@ -27,7 +34,10 @@ async function getContractorForVisitor(req, res){
 async function getAllContractor(req, res) {
     try {
         const contractors = await pool.query(contractorQueries.selectAllContractor)
+        
         res.send(contractors.rows)
+        //const escapedResult = escapeHtml(JSON.stringify(contractors.rows)) // Prévention des attaques XSS
+        //res.send(JSON.parse(escapedResult))
     } catch(err) {
         console.log(err)
     }
@@ -63,6 +73,9 @@ async function updateContractor(req, res) {
         const { lastname, firstname, email, info, societes, activities } = req.body
         const tab = [lastname, firstname, email, info, activities, societes, userId]
         await pool.query(contractorQueries.updateContractor, tab)
+        //const escapedTab = tab.map(element => escapeHtml(element)) // Prévention des attaques XSS
+        //await pool.query(contractorQueries.updateContractor, escapedTab)
+
         res.send({ data: 0, message: 'prestataire mis à jour' })
     } catch(err) {
         console.log(err)
