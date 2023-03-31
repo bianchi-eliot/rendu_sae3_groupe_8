@@ -1,12 +1,17 @@
 <template>
     <section v-if="services" class="services">
-        <div v-for="service in services" :key="service.id_service" class="service">
-            <div>
+        <div class="a">
+            <div v-for="service in services" :key="service.id_service">
+            <div v-if="service.libelle_service != 'E-shop'">
                 <input :id="service.libelle_service" type="checkbox" name="services" 
                 :value="service.id_service" v-model="contractorServices" @change="toggleActivated">
                 <label :for="service.libelle_service">{{ service.libelle_service }}</label>
             </div>
+            </div>
+        </div>
 
+        <div class="b">
+            <div v-for="service in services" :key="service.id_service">
             <div v-if="service.libelle_service === 'Guests\' book' & contractorServices.includes(service.id_service)">
                 <router-link :to="{ name: 'guest-book' }" class="guest-book-btn">
                     See people's comments
@@ -17,18 +22,13 @@
                 <span class="stars-info">&#9733; : {{ stars }}</span>
             </div>
 
-            <div v-else-if="service.libelle_service === 'E-shop' & contractorServices.includes(service.id_service)">
-                <router-link :to="{ name: 'shop' }" class="e-shop-btn">
-                    Go to the e-shop
-                </router-link>
-            </div>
 
             <div v-else-if="service.libelle_service === 'Affluent graph' & contractorServices.includes(service.id_service)">
                 <router-link :to="{ name: 'graph' }" class="graph-btn">
                     See your graph
                 </router-link>
             </div>
-
+        </div>
         </div>
     </section>
     <p v-if="error">{{ error }}</p>
@@ -99,6 +99,26 @@ export default {
 </script>
 
 <style>
+.a {
+    display: flex;
+        flex-direction: column !important;
+        gap: 15px;
+
+}
+.a > div > div{
+    display: flex;
+        gap: 20px
+}
+.b {
+    display: flex;
+        flex-direction: column !important;
+        gap: 15px;
+
+}
+.b > div > div{
+    display: flex;
+        gap: 20px
+}
 section.services {
     display: flex;
         flex-wrap: wrap;

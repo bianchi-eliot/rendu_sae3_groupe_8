@@ -1,10 +1,18 @@
 <template>
     <section v-if="contractors" class="on-wl contractors">
         <p class="msg">{{ message }}</p>
-        <div v-for="contractor in contractors" :key="contractor.id_personne" class="contractor2">
-            <p>{{ contractor.nom }} {{ contractor.prenom }}</p>
-            <button class="add-btn" @click="add(contractor.id_personne)">Add contractor</button>
-            <button class="delete-btn" @click="delete2(contractor.id_personne)">Delete contractor</button>
+        <div v-for="contractor in contractors" :key="contractor.id_personne" class="contractor">
+            <p>Name: {{ contractor.nom }} {{ contractor.prenom }}</p>
+            <p>Email: {{ contractor.email }}</p>
+            <div class="description">Description: {{ contractor.infopersonne }}</div>
+            <div class="add_delete">
+                <button class="add-btn" @click="add(contractor.id_personne)">
+                    Add
+                </button>
+                <button class="delete-btn" @click="del(contractor.id_personne)">
+                    Delete
+                </button>
+            </div>
         </div>
     </section>
 </template>
@@ -31,7 +39,7 @@ export default {
             }
             this.contractors = this.contractors.filter(c => c.id_personne != id)
         },
-        async delete2(id) {
+        async del(id) {
             const responce = await fetch(`http://localhost:3000/organiser/deleteContractorOnWL/${id}`, {
                 method: 'DELETE',           
                 headers: {
@@ -57,6 +65,24 @@ export default {
 </script>
 
 <style scoped> 
+.description {
+    display: flex;
+        flex-direction: column;
+        flex-wrap: wrap;
+        width: 300px;
+    border: 2px solid black;
+    line-break: normal;
+    overflow: scroll;
+    height: 150px;
+}
+.add_delete {
+    display: flex;
+        gap: 20px;
+    width: 100%;
+}
+.add_delete > button {
+    flex-grow: 1;
+}
 .contractors {
     display: flex;
         gap: 30px;
@@ -64,21 +90,21 @@ export default {
     margin-top: 300px;
 }
 
-.contractor2 {
+.contractor {
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 10px;
     box-shadow: 2px 2px 3px lightgray;
-    width: 250px;
-    aspect-ratio: 1 / 1; 
+    width: 350px;
+    height: max-content;
 }
 
 .add-btn {
-    border: 2px solid green;
+    border: 2px solid rgb(40, 200, 40);;
     border-radius: 5px;
     box-shadow: 2px 2px 3px lightgray;
-    background-color: green;
+    background-color: rgb(40, 200, 40);;
     color: white;
     padding: 10px 25px;
     transition: 0.25s;
@@ -86,14 +112,14 @@ export default {
 }
 .add-btn:hover {
     background-color: white;
-    color: green;
+    color: rgb(40, 200, 40);;
 }
 
 .delete-btn {
-    border: 2px solid red;
+    border: 2px solid rgb(200, 40, 40);
     border-radius: 5px;
     box-shadow: 2px 2px 3px lightgray;
-    background-color: red;
+    background-color: rgb(200, 40, 40);
     color: white;
     padding: 10px 25px;
     transition: 0.25s;
@@ -101,7 +127,7 @@ export default {
 }
 .delete-btn:hover {
     background-color: white;
-    color: red;
+    color: rgb(200, 40, 40);
 }
 
 .msg {
@@ -109,7 +135,7 @@ export default {
         top: 10vh;
         right: 100px;
         left: 100px;
-    color: green;
+    color: rgb(40, 200, 40);
     font-weight: bold;
     text-align: center;
 }

@@ -106,9 +106,78 @@ async function addGraph(req, res) {
     }
 }
 
+async function getAllContractorsInfluence(req, res) {
+    try {
+        const { userRole } = req.user
+        if (userRole !== 'organiser') {
+            return res.send({ data: 1, message: 'Vous n\'êtes pas un organisateur' })
+        }
+        const results = await pool.query('SELECT tranche_horaire, compteur FROM affluence_sur_page')
+        if(results.rows == 0){return res.send({data: 'No data'})}
+        res.send({ data: results.rows })
+    } catch(err){
+        console.log(err.message)
+        res.send({ data: 1})
+    }
+}
+
+async function getContractorsVisit(req, res) {
+    try {
+        const { userRole } = req.user
+        if (userRole !== 'organiser') {
+            return res.send({ data: 1, message: 'Vous n\'êtes pas un organisateur' })
+        }
+        const results = await pool.query(`
+            SELECT SUM(compteur), nom, prenom FROM affluence_sur_page
+            INNER JOIN personnes ON personnes.id_personne = affluence_sur_page.id_personne
+            GROUP BY personnes.id_personne
+        `)
+        if(results.rows == 0){return res.send({data: 'No data'})}
+        res.send({ data: results.rows })
+    } catch(err){
+        console.log(err.message)
+        res.send({ data: 1})
+    }
+}
+
+async function getContractorsGuestBooks(req, res) {
+    try {
+        const { userRole } = req.user
+        if (userRole !== 'organiser') {
+            return res.send({ data: 1, message: 'Vous n\'êtes pas un organisateur' })
+        }
+        const results = await pool.query(`
+            SELECT COUNT(*), nom, prenom FROM livre_dor
+            INNER JOIN personnes ON personnes.id_personne = livre_dor.id_prestataire
+            GROUP BY personnes.id_personne
+        `)
+        if(results.rows == 0){return res.send({data: 'No data'})}
+        res.send({ data: results.rows })
+    } catch(err){
+        console.log(err.message)
+        res.send({ data: 1})
+    }
+}
+
+async function getContractorsStart(req, res) {
+    try {
+        const results = await pool.query(`
+            SELECT AVG(valeur_note), nom, prenom FROM stars
+            INNER JOIN personnes ON personnes.id_personne = stars.id_prestataire
+            GROUP BY personnes.id_personne
+        `)
+        if(results.rows == 0){return res.send({data: 'No data'})}
+        res.send({ data: results.rows })
+    } catch(err){
+        console.log(err.message)
+        res.send({ data: 1})
+    }
+}
 
 module.exports = {
     addGuestBook, getGuestBook,
     addStars, getStars, addGraph,
-    getAllServices
+    getAllServices, getAllContractorsInfluence,
+    getContractorsVisit, getContractorsGuestBooks,
+    getContractorsStart
 }

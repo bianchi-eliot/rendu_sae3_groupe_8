@@ -5,18 +5,7 @@ const pool = require('../../db_V1.0.js')
 
 async function getHome(req, res) {
     const brands = await pool.query(rootQueries.selectAllSocietes)
-    //res.send(brands.rows)
-    res.send('<h1>Hello World</h1>\n')
-    //res.status(200).render('home.pug', { navbarData, brands: brandsJSON })
-}
-
-function getLogInSignUp(req, res) {
-    /*res.status(200).render('login_signup.pug', { 
-        navbarData,
-        roles: getAllRoles(rolesJSON),
-        activities: getAllActivities(activitiesJSON),
-        brands: getAllBrands(brandsJSON)
-    })*/
+    res.send(brands.rows)
 }
 
 const monthNames = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 
@@ -57,6 +46,7 @@ async function getPlanning(req, res) {
             [todayDate.todayDay, todayDate.todayMonth])
         const timeSlotsSorted = simplifyRequest(timeSlots.rows, 'id_stand', 'hour', 'id_personne', 'id_societe', 'nom', 'prenom', 'nom_activite', 'nom_societe', 'photo_marque')
         timeSlotsSorted.sort(sortTimeSlot)
+        console.log(timeSlotsSorted)
         res.status(200).send({ timeSlots: timeSlotsSorted, todayDate, yesterdayDate, tomorrowDate })
     } catch(e) {
         console.log(e.err)
@@ -122,7 +112,7 @@ async function getAllStands(req, res) {
 }
 
 module.exports = {
-    getHome, getLogInSignUp, getPlanning, 
+    getHome, getPlanning, 
     getSignInRoles, getAllSocietes, getAllActivities, getAllRoles, getAllStands
 }
 

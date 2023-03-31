@@ -17,6 +17,7 @@ export default {
     async mounted() {
         const responce = await fetch(this.url)
         this.societes = await responce.json()
+        console.log(this.societes)
     }
 }
 </script>

@@ -23,6 +23,7 @@ async function logIn(req, res) {
       let { email, password } = req.body
       const results = await pool.query(LOG_IN, [email])
       const match = await bcrypt.compare(password, results.rows[0].mot_de_passe)    // bcrypt
+      console.log(results.rows)
       
       let passwordIsOk = ((match) || (password == results.rows[0].mot_de_passe) ? true : false)
       
@@ -37,7 +38,12 @@ async function logIn(req, res) {
             userId: results.rows[0].id_personne,
             userRole 
         }, 'cle_secrete', { expiresIn: '1h' })
-        res.send({ data: 0, token, userRole })
+        res.send({ 
+            data: 0, 
+            token, 
+            userRole, 
+            name: `${results.rows[0].nom} ${results.rows[0].prenom}`
+        })
       }
   } catch(err) {
       console.log(err.message)
@@ -77,7 +83,9 @@ async function signIn(req, res) {
               res.send({ 
                 data: 3, 
                 message: 'client crée',
-                token })
+                token,
+                name: `${lastName} ${firstName}`
+            })
           }
       }
   } catch(err) {

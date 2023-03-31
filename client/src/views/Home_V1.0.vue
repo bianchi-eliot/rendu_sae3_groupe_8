@@ -4,7 +4,6 @@
 	<FlashMessage v-if="$route.query.clientAccount" message="Votre compte client a été crée!" class="success"/>
     <main class="home">
         <Recap/>
-        <Societes/>
         <Activities/>
         <Services/>
     </main>
@@ -12,7 +11,6 @@
 
 <script>
 import Recap from '../components/home/Recap_V1.0.vue'
-import Societes from '../components/home/Societes_V1.0.vue'
 import Activities from '../components/home/Activities_V1.0.vue'
 import Services from '../components/home/Services_V1.0.vue'
 import FlashMessage from '@/components/FlashMessage_V1.0.vue'
@@ -20,7 +18,7 @@ import FlashMessage from '@/components/FlashMessage_V1.0.vue'
 
 export default {
     name: 'HomeView',
-    components: { Recap, Societes, Activities, Services, FlashMessage }
+    components: { Recap, Activities, Services, FlashMessage }
 }
 </script>
 
