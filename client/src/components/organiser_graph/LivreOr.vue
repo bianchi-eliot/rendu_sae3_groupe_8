@@ -19,11 +19,12 @@ export default {
   data() {
     return {
       data: {
+        labels: ['Signé', 'Pas signé'],
           datasets: [
               {
-                  label: 'Nombre de signatures',
-                  data: null,
-                  backgroundColor: 'rgba(225, 99, 225, 0.2)',
+                  // data: null,
+                  backgroundColor: ['#2c82cd', '#d43830'],
+                  data: [61, 39],
                   borderColor: 'rgba(225, 99, 255, 1)',
                   borderWidth: 2
               },
@@ -33,16 +34,16 @@ export default {
     }
   },
   async mounted() {
-    const result = await fetch('http://localhost:3000/services/guest-book-contractors', {
-            method: 'GET',
-            headers: {
-                'authorization': `Bearer ${this.$store.state.json}`
-            }
-        })
-    const json = await result.json()
-    const livreor = []
-    json.data.forEach(d => livreor.push( d.count ))
-    this.data.datasets[0].data = livreor
+    // const result = await fetch('http://localhost:3000/services/guest-book-contractors', {
+    //         method: 'GET',
+    //         headers: {
+    //             'authorization': `Bearer ${this.$store.state.json}`
+    //         }
+    //     })
+    // const json = await result.json()
+    // const livreor = []
+    // json.data.forEach(d => livreor.push( d.count ))
+    // this.data.datasets[0].data = livreor
   }
 }
 </script>

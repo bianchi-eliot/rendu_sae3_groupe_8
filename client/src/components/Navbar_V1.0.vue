@@ -13,17 +13,6 @@
                 </router-link>
             </li>
             <li class="navbar-list-element">
-                <router-link :to="{ name: 'shop' }">
-                    <svg width="64" height="64" viewBox="0 0 16.933333 16.933333">
-                        <path style="stroke-width: 0" d="M 4.8298486,2.3816725 H 15.875 V 9.5865156 L 6.1768183,10.909854 Z"/>
-                        <path style="stroke-width: 0" d="M 3.482879,2.3816725 H 1.0583338 V 1.0583338 H 4.6951516 L 6.3115152,11.645043 5.7727274,12.527268 h 9.0246956 l 0.01924,1.2682 -10.2526044,1e-6 v -1.268255 l 0.5351801,-0.882173 z"/>
-                        <ellipse style="stroke-width: 0" cx="5.622396" cy="14.835234" rx="1.0583328" ry="1.0397656"/>
-                        <ellipse style="stroke-width: 0" cx="13.758333" cy="14.835234" rx="1.0583328" ry="1.0397656"/>
-                    </svg>
-                    <span class="navbar-title">Shop</span> 
-                </router-link>
-            </li>
-            <li class="navbar-list-element">
                 <router-link :to="{ name: 'map' }"> 
                     <svg width="64" height="64" viewBox="0 0 16.933333 16.933333">
                         <ellipse style="fill: none; stroke-width: 1.56681" cx="8.4666662" cy="5.7741823" rx="4.0489793" ry="3.9324417"/>

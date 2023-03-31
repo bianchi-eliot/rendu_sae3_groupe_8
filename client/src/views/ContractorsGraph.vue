@@ -20,11 +20,11 @@ export default {
         <MostVisitedContractor />
       </div>
       <div>
-        <h3>Livre d'or signés par prestataire</h3>
+        <h3>% de livre d'or signés</h3>
         <LivreOr />
       </div>
       <div>
-        <h3>Etoiles par prestataire</h3>
+        <h3>% d'étoiles données</h3>
         <StarsPrestataire />
       </div>
     </section>

@@ -46,6 +46,7 @@ async function getPlanning(req, res) {
             [todayDate.todayDay, todayDate.todayMonth])
         const timeSlotsSorted = simplifyRequest(timeSlots.rows, 'id_stand', 'hour', 'id_personne', 'id_societe', 'nom', 'prenom', 'nom_activite', 'nom_societe', 'photo_marque')
         timeSlotsSorted.sort(sortTimeSlot)
+        console.log(timeSlotsSorted)
         res.status(200).send({ timeSlots: timeSlotsSorted, todayDate, yesterdayDate, tomorrowDate })
     } catch(e) {
         console.log(e.err)

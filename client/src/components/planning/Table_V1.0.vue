@@ -32,6 +32,7 @@ export default {
     },
     methods: {
         isStand(timeSlot, hour) {
+            hour = parseInt(hour)
             this.i = timeSlot.hour.indexOf(hour)
             if (this.i === -1) return false
             return true

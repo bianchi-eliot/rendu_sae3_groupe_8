@@ -4,7 +4,7 @@
         <div v-for="contractor in contractors" :key="contractor.id_personne" class="contractor">
             <p>Name: {{ contractor.nom }} {{ contractor.prenom }}</p>
             <p>Email: {{ contractor.email }}</p>
-            <div>Description: {{ contractor.infopersonne }}</div>
+            <div class="description">Description: {{ contractor.infopersonne }}</div>
             <div class="add_delete">
                 <button class="add-btn" @click="add(contractor.id_personne)">
                     Add
@@ -65,6 +65,16 @@ export default {
 </script>
 
 <style scoped> 
+.description {
+    display: flex;
+        flex-direction: column;
+        flex-wrap: wrap;
+        width: 300px;
+    border: 2px solid black;
+    line-break: normal;
+    overflow: scroll;
+    height: 150px;
+}
 .add_delete {
     display: flex;
         gap: 20px;

@@ -19,12 +19,13 @@ export default {
   data() {
     return {
       data: {
+        labels: ['Données', 'Pas données'],
           datasets: [
               {
-                  label: 'Note',
-                  data: null,
-                  backgroundColor: 'rgba(99, 99, 255, 0.2)',
-                  borderColor: 'rgba(99, 99, 255, 1)',
+                  // data: null,
+                  backgroundColor: ['#40d430', '#d43830'],
+                  data: [82, 18],
+                  borderColor: 'rgba(225, 99, 255, 1)',
                   borderWidth: 2
               },
           ],
@@ -32,16 +33,16 @@ export default {
     }
   },
   async mounted() {
-    const result = await fetch('http://localhost:3000/services/start-contractors', {
-            method: 'GET',
-            headers: {
-                'authorization': `Bearer ${this.$store.state.json}`
-            }
-        })
-    const json = await result.json()
-    const stars = []
-    json.data.forEach(d => stars.push( d.avg ))
-    this.data.datasets[0].data = stars
+    // const result = await fetch('http://localhost:3000/services/start-contractors', {
+    //         method: 'GET',
+    //         headers: {
+    //             'authorization': `Bearer ${this.$store.state.json}`
+    //         }
+    //     })
+    // const json = await result.json()
+    // const stars = []
+    // json.data.forEach(d => stars.push( d.avg ))
+    // this.data.datasets[0].data = stars
   }
 }
 </script>
@@ -54,6 +55,7 @@ export default {
 .most-visited {
   max-height: 200px;
   width: max-content;
+  color: #40d430;
 }
 
 </style>

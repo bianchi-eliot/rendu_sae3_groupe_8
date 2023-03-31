@@ -4,7 +4,7 @@ const router = express.Router()
 
 const cache = require('../../routeCache')
 
-router.get('/',cache(300), rootControllers.getHome)
+router.get('/', rootControllers.getHome)
 
 // router.get('/login-signup', rootControllers.getLogInSignUp)
   
