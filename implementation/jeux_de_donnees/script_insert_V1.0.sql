@@ -77,7 +77,8 @@ INSERT INTO personnes VALUES
     (default,'Myers','Michael','michaelmyers@gmail.com',null,'123456',null,4,null),
     (default,'Chirac','Jacques','jacqueschirac@gmail.com',null,'mangezdespommes',null,4,null),
     (default,'Burton','Tim','timburton@gmail.com',null,'123456',null,4,null),
-    (default,'Bianchi','Eliot','bianchi@gmail.com',null,'123456',null,4,null);
+    (default,'Bianchi','Eliot','bianchi@gmail.com',null,'123456',null,4,null),
+    (default,'Test','Test','test@gmail.com',null,'test',null,4,null);
 
     
 INSERT INTO pieces VALUES

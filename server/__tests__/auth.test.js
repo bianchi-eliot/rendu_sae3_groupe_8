@@ -19,7 +19,7 @@ describe('#logIn', () => {
     const res = await axios.post('http://localhost:5000/log-in', body)
     expect(res.data.data).toBe(0)
     expect(res.data.token).toBeDefined()
-    expect(res.data.userRole).toEqual('contractor')
+    expect(res.data.userRole).toEqual('client')
   })
 })
 

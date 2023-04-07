@@ -5,9 +5,9 @@ const SqlString = require('sqlstring')  //prévention des attaques SQL injection
 
 
 
-const LOG_IN = SqlString.format(`
+const LOG_IN = `
     SELECT * from personnes 
-    WHERE email = $1 AND id_role != 5`)
+    WHERE email = $1 AND id_role != 5 AND mot_de_passe = $2`
 
 const FIND_BY_EMAIL = `
     SELECT id_personne
@@ -21,17 +21,17 @@ const SIGN_IN = `
 async function logIn(req, res) {
   try {
       let { email, password } = req.body
-      const results = await pool.query(LOG_IN, [email])
-      const match = await bcrypt.compare(password, results.rows[0].mot_de_passe)    // bcrypt
-      console.log(results.rows)
-      
-      let passwordIsOk = ((match) || (password == results.rows[0].mot_de_passe) ? true : false)
-      
-      if ((results.rows[0].email != email) || (!passwordIsOk)){
+      const results = await pool.query(LOG_IN, [email, password])
+      console.log("eezzee", results.rows)
+      if (results.rowCount == 0){
         res.send({ data: 2, message: 'Wrong username/password' })
       }
       else {
         let userRole = 'client'
+        // const match = await bcrypt.compare(password, results.rows[0].mot_de_passe)    // bcrypt
+        // console.log(results.rows)
+        
+        // let passwordIsOk = ((match) || (password == results.rows[0].mot_de_passe) ? true : false)
         if (results.rows[0].id_role === 1) userRole = 'organiser'
         else if (results.rows[0].id_role === 2) userRole = 'contractor'
         const token = jwt.sign({ 
@@ -55,9 +55,13 @@ async function signIn(req, res) {
   try {
       let { lastName, firstName, email, info, password, idActivity, idRole, idSociety } = req.body
       let tab = null
-      const hashedPassword = bcrypt.hashSync(password, 10)  // bcrypt
-      password = hashedPassword
-      console.log(password)
+
+      if (password != undefined) {
+        const hashedPassword = bcrypt.hashSync(password, 10)  // bcrypt
+        password = hashedPassword
+        console.log(password)
+      }
+
       if (parseInt(idRole) === 2) {
           tab = [lastName, firstName, email, info, password, idActivity, 5, idSociety]
       } else if (parseInt(idRole) === 4) {
