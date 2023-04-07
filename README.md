@@ -23,12 +23,18 @@ ou dans la page login, username: bianchi@gmail.com  mot de passe: 123456  puis c
 ## Initialiser le dossier ./client
 ```
 $ npm install  puis  $ npm run serve  dans le dossier 
-```
+``` 
 
 ## Initialiser le dossier ./server
 ```
 $ npm install  puis  $ npm run start  dans le dossier
 ```
+
+## Lancer le serveur d'authentification
+```
+Dans le dossier ./server ->  $ npm run startAuth
+```
+
 
 ## Utiliser le module node "pg"
 ```
