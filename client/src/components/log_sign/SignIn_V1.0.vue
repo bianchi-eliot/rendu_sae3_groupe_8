@@ -95,6 +95,7 @@ export default {
                     body: JSON.stringify(data)
                 })
             const json = await responce.json()
+            console.log(json)
             if (json.data === 0) {
                 this.$router.push({ name: 'home', query: { contractorAccount: 'true' } })
             } else if (json.data === 3) {

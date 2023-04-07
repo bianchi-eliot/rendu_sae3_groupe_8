@@ -20,8 +20,8 @@ const io = require('socket.io')(server, {
 const swaggerJsDoc = require('swagger-jsdoc')
 const swaggerUi = require('swagger-ui-express')
 const cors = require('cors')
-const helmet = require('helmet')
-var hpp = require('hpp')
+const helmet = require('helmet')    // en-têtes HTTP de sécurité
+const hpp = require('hpp')  // Attaques de pollution
 
 const swaggerOption = {
     swaggerDefinition: (swaggerJsDoc.Options = {
@@ -52,8 +52,8 @@ app.use(
         methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE']
     })
 )
-app.use(hpp())
-app.use(helmet())
+app.use(hpp())  // Attaques de pollution
+app.use(helmet())   // en-têtes HTTP de sécurité
 app.use('/api/v1/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocs))
 app.use('/', rootRoutes)
 app.use('/map', mapRoutes)

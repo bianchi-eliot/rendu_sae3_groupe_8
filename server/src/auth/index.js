@@ -1,6 +1,6 @@
 const pool = require('../../db_V1.0')
 const jwt = require('jsonwebtoken')
-const bcrypt = require('bcrypt')
+const bcrypt = require('bcrypt')  // bcrypt
 const SqlString = require('sqlstring')  //prévention des attaques SQL injection
 
 
@@ -9,14 +9,14 @@ const LOG_IN = `
     SELECT * from personnes 
     WHERE email = $1 AND id_role != 5 AND mot_de_passe = $2`
 
-const FIND_BY_EMAIL = `
+const FIND_BY_EMAIL = SqlString.format(`
     SELECT id_personne
     FROM personnes 
-    WHERE email = $1`
+    WHERE email = $1`)
 
-const SIGN_IN = `
+const SIGN_IN = SqlString.format(`
     INSERT INTO personnes (nom, prenom, email, infoPersonne, mot_de_passe, id_activite, id_role, id_societe) 
-    VALUES ($1, $2, $3, $4, $5, $6, $7, $8)`
+    VALUES ($1, $2, $3, $4, $5, $6, $7, $8)`)
 
 async function logIn(req, res) {
   try {
